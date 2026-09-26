@@ -28,9 +28,14 @@ export async function POST(request) {
     name: text(body.name, 120),
     phone: text(body.phone, 30),
     email: text(body.email, 160),
-    city: text(body.city, 80),
-    service: text(body.service, 80),
+    location: text(body.location, 120),
+    propertyType: text(body.propertyType, 40),
+    requirement: text(body.requirement, 60),
+    area: text(body.area, 10),
     budget: text(body.budget, 40),
+    preferredTime: text(body.preferredTime, 40),
+    startTime: text(body.startTime, 40),
+    form: text(body.form, 10) || "full",
     message: text(body.message, 2000),
     source: text(body.source, 80) || "Website",
   };
@@ -41,7 +46,7 @@ export async function POST(request) {
     return Response.json({ result: "error", error: "Please check the form and try again." }, { status: 400 });
   }
 
-  console.log("[enquiry] received", { name: entry.name, email: entry.email, service: entry.service, source: entry.source });
+  console.log("[enquiry] received", { name: entry.name, email: entry.email, requirement: entry.requirement, source: entry.source });
 
   try {
     await appendEnquiry(entry);
@@ -63,33 +68,40 @@ export async function POST(request) {
   const details = [
     `Name: ${entry.name}`,
     `Phone: ${entry.phone}`,
-    `Email: ${entry.email}`,
-    `City: ${entry.city || "—"}`,
-    `Service: ${entry.service}`,
+    `Email: ${entry.email || "—"}`,
+    `Location: ${entry.location}`,
+    `Property type: ${entry.propertyType || "—"}`,
+    `Requirement: ${entry.requirement || "—"}`,
+    `Area: ${entry.area ? `${entry.area} sq.ft` : "—"}`,
     `Budget: ${entry.budget || "—"}`,
+    `Preferred time: ${entry.preferredTime || "—"}`,
+    `Planning to start: ${entry.startTime || "—"}`,
     `Source: ${entry.source}`,
     "",
     entry.message || "No message.",
   ].join("\n");
 
-  const thankYou = `Hello ${entry.name},\n\nThank you for contacting ${site.name}. We have received your enquiry and a designer will get back to you within one working day.\n\n— ${site.name}\n${site.contact.phone}\n${site.contact.email}`;
+  const thankYou = `Hello ${entry.name},\n\nThank you for contacting ${site.name}. We have received your enquiry and our designer will call you shortly to schedule your consultation.\n\n— ${site.name}\n${site.contact.phone}\n${site.contact.email}`;
 
   let visitor;
   let owner;
   try {
     [visitor, owner] = await Promise.all([
-      resend.emails.send({
-        from,
-        to: [entry.email],
-        replyTo: to,
-        subject: `Thank you for contacting ${site.name}`,
-        text: thankYou,
-      }),
+      // Email is optional on the form; only send a thank-you when we have one.
+      !entry.email
+        ? { skipped: true }
+        : resend.emails.send({
+            from,
+            to: [entry.email],
+            replyTo: to,
+            subject: `Thank you for contacting ${site.name}`,
+            text: thankYou,
+          }),
       resend.emails.send({
         from,
         to: [to],
-        replyTo: entry.email,
-        subject: `New enquiry from ${entry.name}`,
+        ...(entry.email ? { replyTo: entry.email } : {}),
+        subject: `New consultation request from ${entry.name}`,
         text: `A new enquiry just came in from the website.\n\n${details}`,
       }),
     ]);
@@ -98,7 +110,9 @@ export async function POST(request) {
     return Response.json({ result: "error", error: "Could not send the enquiry email." }, { status: 502 });
   }
 
-  if (visitor.error) {
+  if (visitor.skipped) {
+    console.log("[enquiry] no email given — thank-you email skipped");
+  } else if (visitor.error) {
     console.warn("[enquiry] thank-you email was not delivered.", visitor.error.message || visitor.error);
   } else {
     console.log("[enquiry] thank-you email sent to", entry.email);

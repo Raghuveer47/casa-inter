@@ -1,0 +1,53 @@
+"use client";
+
+import { FileText, Phone } from "lucide-react";
+import { useEnquiry } from "./EnquiryProvider";
+import { site } from "@/lib/site";
+
+function WhatsAppIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.56.93.95-3.47-.22-.36a9.42 9.42 0 0 1-1.44-5.02c0-5.2 4.23-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.45 9.43zm8.03-17.46A11.28 11.28 0 0 0 12.05.72C5.8.72.71 5.8.71 12.05c0 2 .52 3.95 1.52 5.66L.62 23.6l6.03-1.58a11.32 11.32 0 0 0 5.4 1.38h.01c6.25 0 11.34-5.09 11.34-11.34 0-3.03-1.18-5.88-3.32-8.02z" />
+    </svg>
+  );
+}
+
+// Phones: a fixed bottom bar with Call · WhatsApp · Get Quote, always in thumb reach.
+// Larger screens: a floating WhatsApp button in the corner.
+export default function FloatingContact() {
+  const { openEnquiry } = useEnquiry();
+  const item = "flex flex-1 flex-col items-center justify-center gap-1 py-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.14em]";
+
+  return (
+    <>
+      <nav
+        aria-label="Quick contact"
+        className="fixed inset-x-0 bottom-0 z-40 flex border-t border-gold/30 bg-night/95 pb-[env(safe-area-inset-bottom)] text-cream backdrop-blur-md md:hidden"
+      >
+        <a href={site.contact.phoneHref} className={item} aria-label={`Call CasaArt on ${site.contact.phone}`}>
+          <Phone strokeWidth={1.5} className="size-5 text-gold-soft" />
+          Call
+        </a>
+        <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" className={`${item} border-x border-cream/10`} aria-label="Chat on WhatsApp (opens in a new tab)">
+          <WhatsAppIcon className="size-5 text-[#3ccf74]" />
+          WhatsApp
+        </a>
+        <button type="button" onClick={openEnquiry} className={`${item} bg-gold text-night`}>
+          <FileText strokeWidth={1.5} className="size-5" />
+          Get Quote
+        </button>
+      </nav>
+
+      <a
+        href={site.whatsapp.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-40 hidden items-center gap-2 rounded-full bg-[#1f8f4e] px-5 py-3.5 text-white shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition-colors hover:bg-[#187a42] md:flex"
+        aria-label="Chat with CasaArt on WhatsApp (opens in a new tab)"
+      >
+        <WhatsAppIcon className="size-6" />
+        <span className="text-sm font-semibold">WhatsApp</span>
+      </a>
+    </>
+  );
+}

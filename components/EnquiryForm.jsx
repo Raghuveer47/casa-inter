@@ -3,14 +3,18 @@
 import { useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, ChevronDown, Loader2 } from "lucide-react";
-import { BUDGET_OPTIONS, SERVICE_OPTIONS, submitEnquiry, validateEnquiry } from "@/lib/enquiry";
+import { BUDGET_OPTIONS, EMPTY_ENQUIRY, PROPERTY_OPTIONS, REQUIREMENT_OPTIONS, START_OPTIONS, TIME_OPTIONS, submitEnquiry, validateEnquiry } from "@/lib/enquiry";
 import { site } from "@/lib/site";
 import { cn, EASE } from "@/lib/utils";
 
-const EMPTY = { name: "", phone: "", email: "", city: "", service: "", budget: "", message: "", website: "" };
-const FIELD_ORDER = ["name", "phone", "email", "service", "message"];
+const EMPTY = EMPTY_ENQUIRY;
+const FIELD_ORDER = ["name", "phone", "location", "email", "requirement", "area", "message"];
+// The pop-up quote form asks only for the essentials.
+const QUICK_FIELDS = new Set(["name", "phone", "location", "propertyType", "startTime"]);
 
-export default function EnquiryForm({ source = "Website", dark = false, onDone }) {
+export default function EnquiryForm({ source = "Website", dark = false, compact = false, onDone, onSuccess }) {
+  const form = compact ? "quick" : "full";
+  const visible = (name) => !compact || QUICK_FIELDS.has(name);
   const uid = useId();
   const formRef = useRef(null);
   const submittingRef = useRef(false);
@@ -31,7 +35,7 @@ export default function EnquiryForm({ source = "Website", dark = false, onDone }
     e.preventDefault();
     if (submittingRef.current) return; // guards against double clicks / double Enter
 
-    const found = validateEnquiry(values);
+    const found = validateEnquiry({ ...values, form });
     setErrors(found);
     const firstInvalid = FIELD_ORDER.find((f) => found[f]);
     if (firstInvalid) {
@@ -42,8 +46,12 @@ export default function EnquiryForm({ source = "Website", dark = false, onDone }
     submittingRef.current = true;
     setStatus("submitting");
     try {
-      await submitEnquiry({ ...values, source });
+      await submitEnquiry({ ...values, source, form });
       setStatus("success");
+      try {
+        sessionStorage.setItem("casa-enquiry-sent", "1"); // stops the quote pop-up for this visit
+      } catch {}
+      onSuccess?.();
       setValues(EMPTY);
     } catch (err) {
       console.error("[enquiry]", err);
@@ -54,8 +62,8 @@ export default function EnquiryForm({ source = "Website", dark = false, onDone }
   }
 
   const tone = dark
-    ? { text: "text-paper", muted: "text-paper/60", line: "border-paper/25 focus:border-paper", option: "text-ink" }
-    : { text: "text-ink", muted: "text-muted", line: "border-ink/20 focus:border-ink", option: "" };
+    ? { text: "text-cream", muted: "text-cream/60", line: "border-cream/25 focus:border-gold", option: "bg-ivory text-cream" }
+    : { text: "text-cream", muted: "text-muted", line: "border-cream/20 focus:border-gold", option: "bg-ivory text-cream" };
 
   const fieldClass = cn(
     "w-full appearance-none rounded-none border-0 border-b bg-transparent px-0 py-3 text-base outline-none transition-colors duration-300 placeholder:text-current placeholder:opacity-35 focus-visible:outline-none",
@@ -103,18 +111,18 @@ export default function EnquiryForm({ source = "Website", dark = false, onDone }
             className="py-10"
           >
             <p className="font-serif text-headline font-light">Thank you.</p>
-            <p className="mt-6 max-w-md text-lg leading-relaxed">Your enquiry has been received.</p>
-            <p className={cn("mt-2 max-w-md leading-relaxed", tone.muted)}>Our team will contact you shortly.</p>
+            <p className="mt-6 max-w-md text-lg leading-relaxed">Your consultation request has been received.</p>
+            <p className={cn("mt-2 max-w-md leading-relaxed", tone.muted)}>Our designer will call you shortly to schedule your consultation.</p>
             <div className="mt-10 flex flex-wrap gap-6">
               <button
                 type="button"
                 onClick={() => setStatus("idle")}
-                className={cn("eyebrow border-b pb-1.5", dark ? "border-paper/40" : "border-ink/30")}
+                className={cn("eyebrow border-b pb-1.5", dark ? "border-cream/40" : "border-cream/30")}
               >
                 Send another enquiry
               </button>
               {onDone && (
-                <button type="button" onClick={onDone} className={cn("eyebrow border-b pb-1.5", dark ? "border-paper/40" : "border-ink/30")}>
+                <button type="button" onClick={onDone} className={cn("eyebrow border-b pb-1.5", dark ? "border-cream/40" : "border-cream/30")}>
                   Close
                 </button>
               )}
@@ -130,41 +138,39 @@ export default function EnquiryForm({ source = "Website", dark = false, onDone }
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="relative grid gap-x-8 gap-y-8 sm:grid-cols-2"
+            className={cn("relative grid gap-x-8 sm:grid-cols-2", compact ? "gap-y-5" : "gap-y-8")}
           >
-            {Field({
+            {visible("name") && Field({
               name: "name",
-              label: "Full Name",
+              label: "Name",
               required: true,
-              className: "sm:col-span-2",
-              children: <input type="text" autoComplete="name" className={fieldClass} placeholder="Your name" {...a11y("name", true)} />,
+              children: <input type="text" autoComplete="name" className={fieldClass} placeholder="Your full name" {...a11y("name", true)} />,
             })}
-            {Field({
+            {visible("phone") && Field({
               name: "phone",
               label: "Phone Number",
               required: true,
               children: <input type="tel" inputMode="tel" autoComplete="tel" className={fieldClass} placeholder="+91" {...a11y("phone", true)} />,
             })}
-            {Field({
+            {visible("location") && Field({
+              name: "location",
+              label: "Location",
+              required: true,
+              children: <input type="text" autoComplete="address-level2" className={fieldClass} placeholder="e.g. Kokapet, Hyderabad" {...a11y("location", true)} />,
+            })}
+            {visible("email") && Field({
               name: "email",
-              label: "Email",
-              required: true,
-              children: <input type="email" inputMode="email" autoComplete="email" className={fieldClass} placeholder="you@email.com" {...a11y("email", true)} />,
+              label: "Email (optional)",
+              children: <input type="email" inputMode="email" autoComplete="email" className={fieldClass} placeholder="you@email.com" {...a11y("email")} />,
             })}
-            {Field({
-              name: "city",
-              label: "City",
-              children: <input type="text" autoComplete="address-level2" className={fieldClass} placeholder="Hyderabad" {...a11y("city")} />,
-            })}
-            {Field({
-              name: "service",
-              label: "Service",
-              required: true,
+            {visible("propertyType") && Field({
+              name: "propertyType",
+              label: "Property Type",
               children: (
                 <div className="relative">
-                  <select className={cn(fieldClass, "pr-8", !values.service && "opacity-60")} {...a11y("service", true)}>
-                    <option value="" disabled className={tone.option}>Select a service</option>
-                    {SERVICE_OPTIONS.map((o) => (
+                  <select className={cn(fieldClass, "pr-8", !values.propertyType && "opacity-60")} {...a11y("propertyType")}>
+                    <option value="" className={tone.option}>Select property type</option>
+                    {PROPERTY_OPTIONS.map((o) => (
                       <option key={o} value={o} className={tone.option}>{o}</option>
                     ))}
                   </select>
@@ -172,14 +178,34 @@ export default function EnquiryForm({ source = "Website", dark = false, onDone }
                 </div>
               ),
             })}
-            {Field({
+            {visible("requirement") && Field({
+              name: "requirement",
+              label: "Requirement",
+              required: true,
+              children: (
+                <div className="relative">
+                  <select className={cn(fieldClass, "pr-8", !values.requirement && "opacity-60")} {...a11y("requirement", true)}>
+                    <option value="" disabled className={tone.option}>Select requirement</option>
+                    {REQUIREMENT_OPTIONS.map((o) => (
+                      <option key={o} value={o} className={tone.option}>{o}</option>
+                    ))}
+                  </select>
+                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-0 top-1/2 size-4 -translate-y-1/2 opacity-60" />
+                </div>
+              ),
+            })}
+            {visible("area") && Field({
+              name: "area",
+              label: "Approx. Area (sq.ft)",
+              children: <input type="text" inputMode="numeric" className={fieldClass} placeholder="e.g. 1450" {...a11y("area")} />,
+            })}
+            {visible("budget") && Field({
               name: "budget",
-              label: "Budget",
-              className: "sm:col-span-2",
+              label: "Budget Range (optional)",
               children: (
                 <div className="relative">
                   <select className={cn(fieldClass, "pr-8", !values.budget && "opacity-60")} {...a11y("budget")}>
-                    <option value="" className={tone.option}>Select a range (optional)</option>
+                    <option value="" className={tone.option}>Select a range</option>
                     {BUDGET_OPTIONS.map((o) => (
                       <option key={o} value={o} className={tone.option}>{o}</option>
                     ))}
@@ -188,12 +214,43 @@ export default function EnquiryForm({ source = "Website", dark = false, onDone }
                 </div>
               ),
             })}
-            {Field({
+            {visible("startTime") && Field({
+              name: "startTime",
+              label: "When do you plan to start?",
+              className: compact ? "sm:col-span-2" : undefined,
+              children: (
+                <div className="relative">
+                  <select className={cn(fieldClass, "pr-8", !values.startTime && "opacity-60")} {...a11y("startTime")}>
+                    <option value="" className={tone.option}>Select timeline</option>
+                    {START_OPTIONS.map((o) => (
+                      <option key={o} value={o} className={tone.option}>{o}</option>
+                    ))}
+                  </select>
+                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-0 top-1/2 size-4 -translate-y-1/2 opacity-60" />
+                </div>
+              ),
+            })}
+            {visible("preferredTime") && Field({
+              name: "preferredTime",
+              label: "Preferred Consultation Time",
+              children: (
+                <div className="relative">
+                  <select className={cn(fieldClass, "pr-8", !values.preferredTime && "opacity-60")} {...a11y("preferredTime")}>
+                    <option value="" className={tone.option}>Any time</option>
+                    {TIME_OPTIONS.map((o) => (
+                      <option key={o} value={o} className={tone.option}>{o}</option>
+                    ))}
+                  </select>
+                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-0 top-1/2 size-4 -translate-y-1/2 opacity-60" />
+                </div>
+              ),
+            })}
+            {visible("message") && Field({
               name: "message",
-              label: "Message",
+              label: "Message / Requirement",
               className: "sm:col-span-2",
               children: (
-                <textarea rows={4} maxLength={2000} className={cn(fieldClass, "resize-none")} placeholder="Tell us about your space, timeline and what you have in mind" {...a11y("message")} />
+                <textarea rows={3} maxLength={2000} className={cn(fieldClass, "resize-none")} placeholder="Tell us about your space and what you have in mind" {...a11y("message")} />
               ),
             })}
 
@@ -210,7 +267,7 @@ export default function EnquiryForm({ source = "Website", dark = false, onDone }
                 aria-disabled={status === "submitting"}
                 className={cn(
                   "group inline-flex min-h-14 items-center justify-center gap-3 px-9 text-[0.8rem] font-medium uppercase tracking-[0.16em] transition-colors duration-500 disabled:cursor-wait disabled:opacity-70",
-                  dark ? "bg-paper text-ink hover:bg-ivory" : "bg-ink text-paper hover:bg-charcoal"
+                  "bg-gold text-night hover:bg-clay"
                 )}
               >
                 {status === "submitting" ? (
@@ -220,12 +277,12 @@ export default function EnquiryForm({ source = "Website", dark = false, onDone }
                   </>
                 ) : (
                   <>
-                    Submit Enquiry
+                    {compact ? "Request Free Quote" : "Get My Design Consultation"}
                     <ArrowUpRight aria-hidden="true" strokeWidth={1.5} className="size-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </>
                 )}
               </button>
-              <p className={cn("text-xs leading-relaxed", tone.muted)}>* Required fields. We reply within one working day.</p>
+              <p className={cn("text-xs leading-relaxed", tone.muted)}>* Required. Your details are safe — no spam, ever.</p>
             </div>
 
             <AnimatePresence>
@@ -240,7 +297,7 @@ export default function EnquiryForm({ source = "Website", dark = false, onDone }
                   <p className="font-medium">Something went wrong.</p>
                   <p className={cn("mt-1 text-sm", tone.muted)}>
                     Please try again or contact us directly at{" "}
-                    <a className="underline underline-offset-4" href={`tel:${site.contact.phone.replace(/\s/g, "")}`}>{site.contact.phone}</a>.
+                    <a className="underline underline-offset-4" href={site.contact.phoneHref}>{site.contact.phone}</a>.
                   </p>
                 </motion.div>
               )}

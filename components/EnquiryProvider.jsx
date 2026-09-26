@@ -65,7 +65,7 @@ export default function EnquiryProvider({ children }) {
           {open && (
             <div className="fixed inset-0 z-[60]" key={pathname}>
               <motion.div
-                className="absolute inset-0 bg-ink/60"
+                className="absolute inset-0 bg-night/60"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -84,7 +84,7 @@ export default function EnquiryProvider({ children }) {
                 transition={{ duration: 0.38, ease: EASE }}
               >
                 <div className="flex items-center justify-between px-6 pt-6 sm:px-12 sm:pt-10">
-                  <p className="eyebrow text-earth">Start your project</p>
+                  <p className="eyebrow text-gold">Book a consultation</p>
                   <button
                     type="button"
                     onClick={closeEnquiry}

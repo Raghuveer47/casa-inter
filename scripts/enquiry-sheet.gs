@@ -12,12 +12,12 @@ function doPost(e) {
     }
 
     const ss = SpreadsheetApp.getActive();
-    let sheet = ss.getSheetByName("Enquiries");
-    if (!sheet) sheet = ss.insertSheet("Enquiries");
+    let sheet = ss.getSheetByName("Consultations");
+    if (!sheet) sheet = ss.insertSheet("Consultations");
 
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(["Submitted at", "Name", "Phone", "Email", "City", "Service", "Budget", "Message", "Source"]);
-      sheet.getRange(1, 1, 1, 9).setFontWeight("bold");
+      sheet.appendRow(["Submitted at", "Name", "Phone", "Email", "Location", "Property type", "Requirement", "Area (sq.ft)", "Budget", "Preferred time", "Start", "Message", "Source"]);
+      sheet.getRange(1, 1, 1, 13).setFontWeight("bold");
       sheet.setFrozenRows(1);
     }
 
@@ -26,9 +26,13 @@ function doPost(e) {
       data.name || "",
       "'" + String(data.phone || ""),
       data.email || "",
-      data.city || "",
-      data.service || "",
+      data.location || "",
+      data.propertyType || "",
+      data.requirement || "",
+      data.area || "",
       data.budget || "",
+      data.preferredTime || "",
+      data.startTime || "",
       data.message || "",
       data.source || "",
     ]);

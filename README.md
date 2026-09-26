@@ -25,11 +25,12 @@ While `NEXT_PUBLIC_GOOGLE_SCRIPT_URL` is empty, `npm run dev` **simulates** a su
 ## Project structure
 
 ```
-app/                  Routes: / , /about, /services, /projects, /contact, /journal/[slug]
+app/                  Routes: / , /about, /services, /services/[slug], /projects, /projects/[slug],
+                      /projects/[slug]/gallery, /gallery, /materials, /process, /contact, /privacy-policy, /terms
                       plus robots.js, sitemap.js, icon.svg, opengraph-image.js
 components/           One component per homepage section (Hero, BrandIntro, Categories, …)
 components/ui/        Shared primitives: LineReveal, ImageReveal, Reveal, Button, ArrowLink, PageHeader
-data/                 All content: images, categories, interiors, projects, services, collections, articles
+data/                 All content: images, projects (with galleries), services, packages, brand (why, FAQ, reviews, materials)
 lib/site.js           Brand name, navigation, contact details, socials, studio stats
 lib/enquiry.js        Form options, validation and the single fetch() to Apps Script
 google-apps-script/   Code.gs for the Google Sheet
@@ -38,9 +39,13 @@ google-apps-script/   Code.gs for the Google Sheet
 ## Replacing content and images
 
 - **Images.** Every photo is referenced from `data/images.js`. Placeholders are Unsplash photos. To use real CasaArt photography, put the files in `public/images/` and change the value, e.g. `hero: "/images/hero.jpg"`. When no remote images remain, you can remove `remotePatterns` from `next.config.mjs`.
-- **Before & After.** In `data/interiors.js`, add a `before` photo to each entry in `beforeAfter`. Until you do, the slider shows a desaturated copy of the "after" photo as a stand-in.
-- **Projects, services, categories, collections, articles.** Edit the files in `data/`.
-- **Phone, email, address, social links, studio stats.** Edit `lib/site.js`. The current values are **placeholders**. Replace them before launch.
+- **Project galleries.** Each project in `data/projects.js` has a `gallery` array of any length. The project page previews the first five photos; the last tile shows "+N" and links to `/projects/[slug]/gallery`, which shows every photo with a full-screen viewer. `/gallery` collects every project photo in one place.
+- **3D Design → Reality.** In `data/interiors.js`, set `render` to the original 3D render for each project. Until you do, the slider shows a toned-down copy of the photo as a stand-in.
+- **Services, packages, materials, FAQ, testimonials.** Edit the files in `data/`. Text comes from casaartinteriors.com; confirm testimonials have client permission before launch.
+- **Phone, WhatsApp, email, address, socials, service areas, stats.** Edit `lib/site.js`.
+- **Theme.** The site is black and gold (tokens in `app/globals.css`). Add `theme-light` to any section to give it the ivory-white palette.
+- **Quote pop-up.** `components/QuotePopup.jsx` opens 15 seconds after load and 15 seconds after each close, and stops once the visitor sends any enquiry. Change `DELAY_MS` to adjust.
+- **Cursor.** `components/CustomCursor.jsx` adds a gold dot and trailing ring on mouse/trackpad devices only. Remove `<CustomCursor />` from `app/layout.js` to turn it off.
 
 ## Google Sheets + Apps Script
 

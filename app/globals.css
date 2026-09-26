@@ -1,33 +1,39 @@
 @import "tailwindcss";
 
+/* Classic black & gold: deep charcoal-black surfaces, warm cream text, antique gold accents. */
 @theme {
-  --color-paper: #faf8f4;
-  --color-ivory: #f3eee5;
-  --color-sand: #e6dccd;
-  --color-beige: #d4c3aa;
-  --color-clay: #9a7656;
-  --color-earth: #6b5744;
-  --color-muted: #6a645c;
-  --color-line: #d9d1c4;
-  --color-charcoal: #2a2724;
-  --color-ink: #151412;
+  --color-night: #060505;
+  --color-paper: #0c0b0a;
+  --color-ivory: #141210;
+  --color-sand: #1f1b17;
+  --color-beige: #e2cc9f;
+  --color-gold: #c5a161;
+  --color-gold-soft: #dcc189;
+  --color-clay: #d7b776;
+  --color-earth: #d9bf8c;
+  --color-muted: #a89f92;
+  --color-line: #2c2721;
+  --color-charcoal: #1a1714;
+  --color-cream: #f2ebdf;
 
   --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-serif--font-feature-settings: "lnum" 1;
   --font-sans: var(--font-manrope), "Manrope", system-ui, sans-serif;
 
   --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
 
-  --text-display: clamp(3rem, 8.4vw, 9rem);
-  --text-display--line-height: 0.92;
-  --text-headline: clamp(2.5rem, 5.6vw, 6rem);
-  --text-headline--line-height: 0.98;
-  --text-title: clamp(1.75rem, 2.6vw, 2.75rem);
-  --text-title--line-height: 1.05;
+  --text-display: clamp(2.9rem, 7.4vw, 7.5rem);
+  --text-display--line-height: 0.98;
+  --text-headline: clamp(2.3rem, 4.8vw, 4.75rem);
+  --text-headline--line-height: 1.04;
+  --text-title: clamp(1.6rem, 2.4vw, 2.4rem);
+  --text-title--line-height: 1.1;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    color-scheme: dark;
     -webkit-tap-highlight-color: transparent;
   }
   @media (prefers-reduced-motion: reduce) {
@@ -37,15 +43,16 @@
   }
   body {
     background: var(--color-paper);
-    color: var(--color-ink);
+    color: var(--color-cream);
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
   ::selection {
-    background: var(--color-beige);
-    color: var(--color-ink);
+    background: var(--color-gold);
+    color: var(--color-night);
   }
   :focus-visible {
-    outline: 2px solid var(--color-clay);
+    outline: 2px solid var(--color-gold);
     outline-offset: 3px;
   }
   [id] {
@@ -56,27 +63,38 @@
 @layer components {
   .container-x {
     width: 100%;
-    max-width: 1600px;
+    max-width: 1440px;
     margin-inline: auto;
     padding-inline: clamp(1rem, 4vw, 3.5rem);
   }
   .section-y {
-    padding-block: clamp(5rem, 11vw, 10rem);
+    padding-block: clamp(4.5rem, 9vw, 8rem);
   }
   .eyebrow {
     font-family: var(--font-sans);
     font-size: 0.7rem;
-    letter-spacing: 0.24em;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
+  }
+  /* Thin offset gold frame around an image — the classic "mat" look. */
+  .frame {
+    position: relative;
+  }
+  .frame::after {
+    content: "";
+    position: absolute;
+    inset: 0.75rem;
+    border: 1px solid rgb(220 193 137 / 0.45);
+    pointer-events: none;
   }
   .skip-link {
     position: absolute;
     left: 1rem;
     top: -4rem;
     z-index: 100;
-    background: var(--color-ink);
-    color: var(--color-paper);
+    background: var(--color-gold);
+    color: var(--color-night);
     padding: 0.75rem 1rem;
     font-size: 0.875rem;
   }
@@ -89,4 +107,47 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Custom cursor (desktop only — see components/CustomCursor.jsx). Text fields keep the normal caret. */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+html.has-custom-cursor :is(input, textarea, select, [contenteditable]) {
+  cursor: text !important;
+}
+html.has-custom-cursor select {
+  cursor: pointer !important;
+}
+
+/* Light (ivory-white) sections inside the black site. Wrap any section in
+   .theme-light and every colour utility inside it flips to the light palette. */
+.theme-light {
+  --color-paper: #f7f3ec;
+  --color-ivory: #efe8dc;
+  --color-sand: #e4d9c6;
+  --color-cream: #1a1612;
+  --color-muted: #6b6258;
+  --color-line: #d9ccb6;
+  --color-gold: #a8823f;
+  --color-gold-soft: #8d6a2f;
+  --color-earth: #8d6a2f;
+  --color-beige: #8d6a2f;
+  --color-clay: #8d6a2f;
+  --color-charcoal: #e9e1d3;
+  background-color: var(--color-paper);
+  color: var(--color-cream);
+}
+.theme-light .frame::after {
+  border-color: rgb(247 243 236 / 0.6);
 }

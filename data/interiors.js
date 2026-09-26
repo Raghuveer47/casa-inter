@@ -1,16 +1,9 @@
 import { images } from "./images";
 
-export const featuredInteriors = [
-  { title: "Modern Living", location: "Jubilee Hills, Hyderabad", category: "Living Room", image: images.modernLiving },
-  { title: "Contemporary Bedroom", location: "Kondapur, Hyderabad", category: "Bedroom", image: images.contemporaryBedroom },
-  { title: "Minimal Kitchen", location: "Gachibowli, Hyderabad", category: "Kitchen", image: images.minimalKitchen },
-  { title: "Luxury Residence", location: "Kokapet, Hyderabad", category: "Complete Home", image: images.luxuryResidence },
-];
-
-// Before/after pairs. Provide a real `before` photo for each room; when it is
-// omitted the slider falls back to a desaturated copy of `after` as a placeholder.
-export const beforeAfter = [
-  { room: "Living Room", location: "Banjara Hills", before: images.beforeShell, after: images.living },
-  { room: "Kitchen", location: "Madhapur", before: images.beforeKitchen, after: images.kitchen },
-  { room: "Bedroom", location: "Manikonda", before: images.beforeBedroom, after: images.bedroom },
+// Before (bare shell) → after (finished CasaArt interior) pairs for the comparison slider.
+// Replace with photos of the same room before and after, or with 3D renders vs final photos.
+export const designToReality = [
+  { room: "Living Room", project: "The Nagole Villa", before: "/images/before-shell.jpg", after: images.livingLuxury },
+  { room: "Kitchen", project: "Elegant Modular Kitchen", before: "/images/before-kitchen.jpg", after: images.kitchen },
+  { room: "Bedroom", project: "Luxury Master Bedroom", before: "/images/before-bedroom.jpg", after: images.bedroomSuite },
 ];

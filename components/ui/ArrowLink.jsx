@@ -8,7 +8,7 @@ export default function ArrowLink({ href, children, className, light = false, ..
       href={href}
       className={cn(
         "group inline-flex items-center gap-3 border-b pb-1.5 text-sm font-medium tracking-wide transition-colors",
-        light ? "border-paper/40 text-paper hover:border-paper" : "border-ink/30 text-ink hover:border-ink",
+        light ? "border-cream/40 text-cream hover:border-cream" : "border-cream/30 text-cream hover:border-cream",
         className
       )}
       {...rest}

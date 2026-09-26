@@ -1,46 +1,104 @@
+import Link from "next/link";
+import { Check } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
-import LineReveal from "@/components/ui/LineReveal";
+import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
-import SectionLabel from "@/components/ui/SectionLabel";
-import Services from "@/components/Services";
+import { ServiceCard } from "@/components/Services";
 import CTA from "@/components/CTA";
-import { process } from "@/data/services";
+import PackageCTA from "@/components/PackageCTA";
+import { coreServices, packages, services } from "@/data/services";
 import { images } from "@/data/images";
+import { cn } from "@/lib/utils";
 
 export const metadata = {
   title: "Services",
-  description: "Interior design, space planning, furniture, lighting, kitchens, bedrooms, complete home and commercial interiors by CasaArt Interiors.",
+  description: "Modular kitchens, wardrobes, bedroom and living room interiors, storage solutions and complete home interiors in Hyderabad by CasaArt.",
   alternates: { canonical: "/services" },
 };
+
+const supporting = services.filter((s) => !s.core);
 
 export default function ServicesPage() {
   return (
     <>
       <PageHeader
         label="Services"
-        lines={["Everything Your", <em key="e" className="text-earth">Space Needs</em>]}
-        intro="From a single room to a complete residence, we design, plan and deliver interiors with one accountable team."
-        image={images.luxury}
-        imageAlt="Open-plan luxury living and dining interior"
+        lines={["Our", <em key="e" className="text-earth">Services</em>]}
+        intro="From a single modular kitchen to a complete home, we design, manufacture and install with one accountable team."
+        image={images.livingLuxury}
+        imageAlt="Living room with modular TV unit and storage by CasaArt"
       />
 
-      <Services showHeading={false} linkTo="/contact" />
-
-      <section aria-labelledby="process-title" className="section-y bg-ink text-paper">
+      <section aria-labelledby="modular-title" className="section-y">
         <div className="container-x">
-          <Reveal>
-            <SectionLabel index="02" light>How we work</SectionLabel>
-          </Reveal>
-          <LineReveal id="process-title" lines={["A Clear,", <em key="e" className="text-beige">Calm Process</em>]} className="mt-8 font-serif text-headline font-light" />
-          <ol className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
-            {process.map((step, i) => (
-              <Reveal as="li" key={step.title} delay={i * 0.08} className="border-t border-paper/20 pt-8">
-                <span className="font-serif text-5xl font-light text-paper/30">0{i + 1}</span>
-                <h3 className="mt-6 font-serif text-2xl font-light">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-paper/65">{step.description}</p>
+          <SectionHeading id="modular-title" eyebrow="Modular interiors" lines={["What We", <em key="e" className="text-earth">Design & Build</em>]} />
+          <ul className="mt-14 grid gap-6 sm:grid-cols-2 md:mt-20 lg:grid-cols-3 lg:gap-8">
+            {coreServices.map((s, i) => (
+              <Reveal as="li" key={s.slug} delay={(i % 3) * 0.08}>
+                <ServiceCard service={s} />
               </Reveal>
             ))}
-          </ol>
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="supporting-title" className="theme-light section-y bg-ivory">
+        <div className="container-x">
+          <SectionHeading
+            id="supporting-title"
+            eyebrow="Also handled by our team"
+            lines={["Complete", <em key="e" className="text-earth">Finishing Works</em>]}
+            intro="Everything else your home needs, coordinated with your modular work so there is one schedule and one point of contact."
+          />
+          <ul className="mx-auto mt-14 grid max-w-5xl gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+            {supporting.map((s) => (
+              <li key={s.slug} className="bg-paper">
+                <Link href={`/services/${s.slug}`} className="group block h-full p-8 transition-colors hover:bg-ivory">
+                  <h3 className="font-serif text-2xl font-light group-hover:text-earth">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{s.short}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="packages-title" className="section-y">
+        <div className="container-x">
+          <SectionHeading
+            id="packages-title"
+            eyebrow="Transparent pricing"
+            lines={["Interior", <em key="e" className="text-earth">Packages</em>]}
+            intro="Choose a package that suits your home and budget. Final pricing is confirmed after a free site visit."
+          />
+          <ul className="mt-14 grid gap-6 md:mt-20 lg:grid-cols-3">
+            {packages.map((p, i) => (
+              <Reveal
+                as="li"
+                key={p.name}
+                delay={i * 0.08}
+                className={cn("relative flex flex-col border p-8 md:p-10", p.featured ? "border-gold bg-night text-cream" : "border-line bg-paper")}
+              >
+                {p.featured && <span className="eyebrow absolute -top-3 left-8 bg-gold px-3 py-1 text-night">Most popular</span>}
+                <h3 className="font-serif text-2xl font-light md:text-3xl">{p.name}</h3>
+                <p className={cn("mt-2 text-sm", p.featured ? "text-cream/60" : "text-muted")}>{p.bestFor}</p>
+                <p className="mt-6 font-serif text-4xl">
+                  <span className={cn("eyebrow mr-2 align-middle", p.featured ? "text-gold-soft" : "text-gold")}>Starting</span>
+                  {p.price}
+                </p>
+                <ul className={cn("mt-8 flex-1 space-y-3 border-t pt-8 text-sm", p.featured ? "border-cream/15" : "border-line")}>
+                  {p.items.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <Check aria-hidden="true" strokeWidth={1.5} className={cn("mt-0.5 size-4 shrink-0", p.featured ? "text-gold-soft" : "text-gold")} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <PackageCTA featured={p.featured} />
+              </Reveal>
+            ))}
+          </ul>
+          <p className="mt-8 text-center text-xs text-muted">*Indicative starting prices. Final quote provided after a free site measurement.</p>
         </div>
       </section>
 

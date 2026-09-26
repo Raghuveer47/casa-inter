@@ -4,10 +4,10 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { animate, motion, useInView, useMotionValue, useMotionValueEvent, useTransform } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import LineReveal from "./ui/LineReveal";
 import Reveal from "./ui/Reveal";
-import SectionLabel from "./ui/SectionLabel";
-import { beforeAfter } from "@/data/interiors";
+import SectionHeading from "./ui/SectionHeading";
+import { designToReality } from "@/data/interiors";
+import { differentiators } from "@/data/brand";
 import { cn, EASE } from "@/lib/utils";
 
 function CompareSlider({ item }) {
@@ -72,7 +72,7 @@ function CompareSlider({ item }) {
     >
       <Image
         src={item.after}
-        alt={`${item.room} after the CasaArt redesign`}
+        alt={`${item.room} after — finished CasaArt interior`}
         fill
         sizes="(min-width: 1600px) 1500px, 100vw"
         className="pointer-events-none object-cover"
@@ -80,19 +80,19 @@ function CompareSlider({ item }) {
       />
       <motion.div className="absolute inset-0" style={{ clipPath }}>
         <Image
-          src={item.before ?? item.after}
-          alt={`${item.room} before the redesign`}
+          src={item.before}
+          alt={`${item.room} before — bare shell`}
           fill
           sizes="(min-width: 1600px) 1500px, 100vw"
-          className={cn("pointer-events-none object-cover", !item.before && "brightness-[0.78] contrast-[0.85] grayscale sepia-[0.25]")}
+          className="pointer-events-none object-cover"
           draggable={false}
         />
       </motion.div>
 
-      <span className="eyebrow pointer-events-none absolute left-4 top-4 bg-ink/70 px-3 py-2 text-paper backdrop-blur-sm md:left-6 md:top-6">Before</span>
-      <span className="eyebrow pointer-events-none absolute right-4 top-4 bg-paper/85 px-3 py-2 text-ink backdrop-blur-sm md:right-6 md:top-6">After</span>
+      <span className="eyebrow pointer-events-none absolute left-4 top-4 bg-black/70 px-3 py-2 text-[#f2ebdf] backdrop-blur-sm md:left-6 md:top-6">Before · Bare Shell</span>
+      <span className="eyebrow pointer-events-none absolute bottom-4 right-4 bg-black/70 px-3 py-2 text-[#dcc189] backdrop-blur-sm md:bottom-6 md:right-6">After · CasaArt</span>
 
-      <motion.div className="pointer-events-none absolute inset-y-0 -ml-px w-0.5 bg-paper" style={{ left }} aria-hidden="true" />
+      <motion.div className="pointer-events-none absolute inset-y-0 -ml-px w-0.5 bg-[#f2ebdf]" style={{ left }} aria-hidden="true" />
       <motion.div
         role="slider"
         tabIndex={0}
@@ -102,7 +102,7 @@ function CompareSlider({ item }) {
         aria-valuenow={ariaValue}
         aria-valuetext={`${ariaValue}% before`}
         onKeyDown={onKeyDown}
-        className="absolute top-1/2 grid size-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-paper text-ink shadow-[0_8px_30px_rgba(0,0,0,0.25)] focus-visible:outline-paper md:size-16"
+        className="absolute top-1/2 grid size-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[#f2ebdf] text-[#060505] shadow-[0_8px_30px_rgba(0,0,0,0.25)] focus-visible:outline-cream md:size-16"
         style={{ left }}
       >
         <span className="flex items-center" aria-hidden="true">
@@ -116,51 +116,50 @@ function CompareSlider({ item }) {
 
 export default function BeforeAfter() {
   const [active, setActive] = useState(0);
-  const item = beforeAfter[active];
+  const item = designToReality[active];
 
   return (
-    <section aria-labelledby="transform-title" className="section-y bg-ink text-paper">
+    <section aria-labelledby="transform-title" className="theme-light section-y bg-ivory">
       <div className="container-x">
-        <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-          <div>
-            <Reveal>
-              <SectionLabel index="05" light>Transformations</SectionLabel>
+        <SectionHeading
+          id="transform-title"
+          eyebrow="The CasaArt difference"
+          lines={["Designed Here.", <em key="e" className="text-earth">Built Here.</em>]}
+          intro="Because we own the factory, what you approve in 3D is exactly what we build. Drag the handle to see a bare shell become a finished home."
+        />
+        <ul className="mx-auto mt-12 grid max-w-5xl gap-6 text-center sm:grid-cols-3">
+          {differentiators.map((d, i) => (
+            <Reveal as="li" key={d.title} delay={i * 0.08} className="border-t border-gold/40 pt-5">
+              <h3 className="font-serif text-2xl font-light">{d.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{d.body}</p>
             </Reveal>
-            <LineReveal
-              id="transform-title"
-              lines={["Before &", <em key="e" className="text-beige">After</em>]}
-              className="mt-8 font-serif text-headline font-light"
-            />
+          ))}
+        </ul>
+        <Reveal delay={0.1}>
+          <div role="tablist" aria-label="Choose a project" className="mt-10 flex flex-wrap justify-center gap-2">
+            {designToReality.map((b, i) => (
+              <button
+                key={b.room}
+                role="tab"
+                type="button"
+                aria-selected={active === i}
+                onClick={() => setActive(i)}
+                className={cn(
+                  "min-h-11 border px-5 text-xs font-semibold uppercase tracking-[0.16em] transition-colors duration-500",
+                  active === i ? "border-gold bg-gold text-night" : "border-cream/20 text-cream/70 hover:border-gold hover:text-cream"
+                )}
+              >
+                {b.room}
+              </button>
+            ))}
           </div>
-          <Reveal delay={0.1} className="max-w-sm">
-            <p className="leading-relaxed text-paper/65">
-              Drag the handle to see how a considered plan, the right materials and careful styling change the way a room feels.
-            </p>
-            <div role="tablist" aria-label="Choose a room" className="mt-8 flex flex-wrap gap-2">
-              {beforeAfter.map((b, i) => (
-                <button
-                  key={b.room}
-                  role="tab"
-                  type="button"
-                  aria-selected={active === i}
-                  onClick={() => setActive(i)}
-                  className={cn(
-                    "min-h-11 border px-5 text-xs font-medium uppercase tracking-[0.16em] transition-colors duration-500",
-                    active === i ? "border-paper bg-paper text-ink" : "border-paper/25 text-paper/70 hover:border-paper/60 hover:text-paper"
-                  )}
-                >
-                  {b.room}
-                </button>
-              ))}
-            </div>
-          </Reveal>
-        </div>
+        </Reveal>
 
-        <Reveal className="mt-14 md:mt-20" y={40}>
+        <Reveal className="mx-auto mt-12 max-w-6xl" y={40}>
           <CompareSlider key={item.room} item={item} />
-          <div className="mt-5 flex justify-between text-sm text-paper/55">
+          <div className="mt-5 flex justify-between text-sm text-muted">
             <span>{item.room}</span>
-            <span>{item.location}</span>
+            <span>{item.project}</span>
           </div>
         </Reveal>
       </div>

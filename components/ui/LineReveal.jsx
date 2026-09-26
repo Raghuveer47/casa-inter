@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { cn, EASE } from "@/lib/utils";
 
 // Reveals text line-by-line from behind a mask. `lines` may contain JSX.
+// The in-view trigger sits on the whole heading (not the clipped lines), so it
+// fires reliably; each line then animates in via variant propagation.
 export default function LineReveal({
   lines,
   as: Tag = "h2",
@@ -21,21 +23,21 @@ export default function LineReveal({
 
   return (
     <Tag id={id} className={className}>
-      {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden pb-[0.12em] -mb-[0.12em]">
-          <motion.span
-            className={cn("block", lineClassName)}
-            initial="hidden"
-            {...trigger}
-            variants={{
-              hidden: { y: "110%" },
-              visible: { y: "0%", transition: { duration, ease: EASE, delay: delay + i * stagger } },
-            }}
-          >
-            {line}
-          </motion.span>
-        </span>
-      ))}
+      <motion.span className="block" initial="hidden" {...trigger}>
+        {lines.map((line, i) => (
+          <span key={i} className="block overflow-hidden pb-[0.12em] -mb-[0.12em]">
+            <motion.span
+              className={cn("block", lineClassName)}
+              variants={{
+                hidden: { y: "110%" },
+                visible: { y: "0%", transition: { duration, ease: EASE, delay: delay + i * stagger } },
+              }}
+            >
+              {line}
+            </motion.span>
+          </span>
+        ))}
+      </motion.span>
     </Tag>
   );
 }

@@ -4,7 +4,6 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import LineReveal from "./ui/LineReveal";
 import Reveal from "./ui/Reveal";
-import SectionLabel from "./ui/SectionLabel";
 import ArrowLink from "./ui/ArrowLink";
 import ProjectCard from "./ProjectCard";
 import { projects } from "@/data/projects";
@@ -14,11 +13,11 @@ function Heading() {
     <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
       <div>
         <Reveal>
-          <SectionLabel index="07">Featured Projects</SectionLabel>
+          <p className="eyebrow text-gold">Featured Projects</p>
         </Reveal>
         <LineReveal
-          lines={["Selected", <em key="e" className="text-earth">Works</em>]}
-          className="mt-8 font-serif text-headline font-light"
+          lines={["Recent", <em key="e" className="text-earth">Projects</em>]}
+          className="mt-5 font-serif text-headline font-light"
         />
       </div>
       <Reveal delay={0.1}>

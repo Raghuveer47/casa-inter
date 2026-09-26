@@ -18,7 +18,7 @@ export default function Hero() {
   const fade = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
 
   return (
-    <section ref={ref} aria-label="Introduction" className="relative h-[100svh] min-h-[620px] overflow-hidden bg-ink text-paper">
+    <section ref={ref} aria-label="Introduction" className="relative h-[100svh] min-h-[600px] overflow-hidden bg-night text-cream">
       <motion.div style={{ y, scale }} className="absolute inset-0 will-change-transform">
         <motion.div
           className="absolute inset-0"
@@ -36,17 +36,17 @@ export default function Hero() {
           />
         </motion.div>
       </motion.div>
-      <div className="absolute inset-0 bg-linear-to-b from-ink/60 via-ink/35 to-ink/85" />
+      <div className="absolute inset-0 bg-linear-to-b from-night/60 via-night/35 to-night/85" />
 
-      <motion.div style={{ opacity: fade }} className="container-x relative z-10 flex h-full flex-col justify-end pb-10 md:pb-14">
+      <motion.div style={{ opacity: fade }} className="container-x relative z-10 flex h-full flex-col justify-end pb-24 md:pb-14">
         <motion.div
-          className="eyebrow mb-8 flex items-center justify-between text-paper/75 md:mb-10"
+          className="eyebrow mb-6 flex items-center justify-between gap-4 text-cream/75 md:mb-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.9 }}
         >
-          <span>Interior Design Studio</span>
-          <span className="hidden sm:inline">Hyderabad — India</span>
+          <span>Luxury Interiors · Own Modular Factory</span>
+          <span className="hidden sm:inline">Neopolis–Kokapet, Hyderabad</span>
         </motion.div>
 
         <LineReveal
@@ -55,17 +55,17 @@ export default function Hero() {
           delay={0.35}
           stagger={0.14}
           className="font-serif text-display font-light tracking-[-0.01em]"
-          lines={["Beautiful Spaces.", <em key="i" className="font-light">Thoughtfully Designed.</em>]}
+          lines={["Beautifully Designed.", <em key="i" className="font-light text-gold-soft">Expertly Crafted.</em>]}
         />
 
-        <div className="mt-10 grid gap-8 border-t border-paper/20 pt-8 md:mt-14 md:grid-cols-12 md:items-end">
+        <div className="mt-8 grid gap-6 border-t border-cream/20 pt-6 md:mt-14 md:grid-cols-12 md:items-end md:gap-8 md:pt-8">
           <motion.p
-            className="max-w-md text-base leading-relaxed text-paper/80 md:col-span-5 md:text-lg"
+            className="max-w-md text-[0.95rem] leading-relaxed text-cream/80 md:col-span-5 md:text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: EASE, delay: 1 }}
           >
-            CasaArt Interiors creates timeless spaces that feel beautiful, personal and truly yours.
+            Bespoke interiors, designed around your life and built in our own factory — so every piece fits perfectly and lasts for years.
           </motion.p>
           <motion.div
             className="flex flex-col gap-3 sm:flex-row md:col-span-7 md:justify-end"
@@ -73,8 +73,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: EASE, delay: 1.15 }}
           >
-            <Button href="/projects" variant="light">Explore Our Work</Button>
-            <Button variant="outlineLight" onClick={openEnquiry}>Start Your Project</Button>
+            <Button variant="gold" onClick={openEnquiry}>Get a Free Quote</Button>
+            <Button href="/projects" variant="outlineLight">View Our Projects</Button>
           </motion.div>
         </div>
       </motion.div>

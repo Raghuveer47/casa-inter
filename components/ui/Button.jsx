@@ -3,10 +3,11 @@ import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const variants = {
-  dark: "bg-ink text-paper hover:bg-charcoal",
-  light: "bg-paper text-ink hover:bg-ivory",
-  outlineLight: "border border-paper/50 text-paper hover:bg-paper hover:text-ink",
-  outlineDark: "border border-ink/30 text-ink hover:bg-ink hover:text-paper",
+  dark: "bg-cream text-night hover:bg-beige",
+  gold: "bg-gold text-night hover:bg-clay",
+  light: "bg-cream text-night hover:bg-beige",
+  outlineLight: "border border-cream/50 text-cream hover:bg-cream hover:text-night",
+  outlineDark: "border border-cream/30 text-cream hover:border-gold hover:text-gold-soft",
 };
 
 // Renders a Link when `href` is given, otherwise a <button>.
