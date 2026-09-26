@@ -1,0 +1,58 @@
+import { images } from "./images";
+
+export const projects = [
+  {
+    slug: "the-modern-residence",
+    title: "The Modern Residence",
+    category: "Residential",
+    location: "Jubilee Hills, Hyderabad",
+    year: "2025",
+    area: "4,200 sq ft",
+    image: images.projectModern,
+  },
+  {
+    slug: "the-warm-minimalist-home",
+    title: "The Warm Minimalist Home",
+    category: "Residential",
+    location: "Gachibowli, Hyderabad",
+    year: "2025",
+    area: "2,600 sq ft",
+    image: images.projectWarm,
+  },
+  {
+    slug: "urban-luxury-apartment",
+    title: "Urban Luxury Apartment",
+    category: "Apartment",
+    location: "Banjara Hills, Hyderabad",
+    year: "2024",
+    area: "3,100 sq ft",
+    image: images.projectUrban,
+  },
+  {
+    slug: "contemporary-villa",
+    title: "Contemporary Villa",
+    category: "Villa",
+    location: "Kokapet, Hyderabad",
+    year: "2024",
+    area: "6,800 sq ft",
+    image: images.projectVilla,
+  },
+  {
+    slug: "elegant-workspace",
+    title: "Elegant Workspace",
+    category: "Commercial",
+    location: "HITEC City, Hyderabad",
+    year: "2024",
+    area: "9,500 sq ft",
+    image: images.projectWorkspace,
+  },
+  {
+    slug: "the-courtyard-house",
+    title: "The Courtyard House",
+    category: "Villa",
+    location: "Shamshabad, Hyderabad",
+    year: "2023",
+    area: "5,400 sq ft",
+    image: images.projectCourtyard,
+  },
+];
