@@ -5,7 +5,6 @@ import EnquiryProvider from "@/components/EnquiryProvider";
 import FloatingContact from "@/components/FloatingContact";
 import QuotePopup from "@/components/QuotePopup";
 import CustomCursor from "@/components/CustomCursor";
-import ThemePreview from "@/components/ThemePreview";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -50,11 +49,11 @@ const THEME = "mocha";
 // Options: "modern" (bold sans), "classic" (bold serif), "elegant" (fine serif).
 const FONT = "modern";
 
-const title = "CasaArt Interiors | Premium Modular Interiors in Hyderabad";
+const title = "CasaArt - Design Better. Build Better. Live Better.";
 
 export const metadata = {
   metadataBase: new URL(site.url),
-  title: { default: title, template: "%s | CasaArt Interiors" },
+  title: { default: title, template: "%s | CasaArt" },
   description: site.description,
   keywords: ["modular kitchen Hyderabad", "modular wardrobes", "modular interiors Hyderabad", "home interiors Kokapet", "interior designers Hyderabad", "CasaArt Interiors"],
   alternates: { canonical: "/" },
@@ -107,7 +106,6 @@ export default function RootLayout({ children }) {
           <QuotePopup />
         </EnquiryProvider>
         <CustomCursor />
-        <ThemePreview />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>

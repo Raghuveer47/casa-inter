@@ -25,7 +25,7 @@ export default function Footer() {
             <Image src="/logo.png" alt="" width={433} height={336} className="h-20 w-auto" />
           </Link>
           <p className="mt-8 font-serif text-3xl font-light leading-tight md:text-4xl">
-            Beautifully designed. <em className="text-beige">Expertly crafted.</em>
+            Design better. <em className="text-beige">Build better. Live better.</em>
           </p>
           <Ornament light className="mt-6" />
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-cream/55">{site.description}</p>
@@ -81,7 +81,7 @@ export default function Footer() {
 
       <div className="mt-16 border-t border-cream/10">
         <div className="container-x flex flex-col gap-3 py-7 text-xs text-cream/45 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} CasaArt Interiors. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} CasaArt. All rights reserved.</p>
           <p className="flex gap-5">
             <Link href="/privacy-policy" className={linkClass}>Privacy Policy</Link>
             <Link href="/terms" className={linkClass}>Terms &amp; Conditions</Link>

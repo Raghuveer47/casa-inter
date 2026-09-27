@@ -9,7 +9,7 @@ export default function Testimonials() {
       <div className="container-x">
         <SectionHeading
           id="reviews-title"
-          eyebrow="Homeowner stories"
+          eyebrow="Happy homeowners"
           lines={["What Our", <em key="e" className="text-earth">Clients Say</em>]}
           intro="We are proud of the trust families across Hyderabad have placed in CasaArt."
         />

@@ -123,15 +123,15 @@ export default function BeforeAfter() {
       <div className="container-x">
         <SectionHeading
           id="transform-title"
-          eyebrow="The CasaArt difference"
-          lines={["Designed Here.", <em key="e" className="text-earth">Built Here.</em>]}
-          intro="Because we own the factory, what you approve in 3D is exactly what we build. Drag the handle to see a bare shell become a finished home."
+          eyebrow="In-house Manufacturing"
+          lines={["Our Modular", <em key="e" className="text-earth">Factory</em>]}
+          intro="We have our own modular factory for better finishes, superior quality and on-time delivery. Owning our production means we control every stage — from raw material to final installation — so nothing is left to chance."
         />
         <ul className="mx-auto mt-12 grid max-w-5xl gap-6 text-center sm:grid-cols-3">
           {differentiators.map((d, i) => (
             <Reveal as="li" key={d.title} delay={i * 0.08} className="rounded-3xl bg-ivory p-6">
               <h3 className="text-lg font-semibold">{d.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{d.body}</p>
+              {d.body && <p className="mt-2 text-sm leading-relaxed text-muted">{d.body}</p>}
             </Reveal>
           ))}
         </ul>

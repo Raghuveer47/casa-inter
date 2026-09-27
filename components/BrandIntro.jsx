@@ -7,9 +7,9 @@ import { images } from "@/data/images";
 import { site } from "@/lib/site";
 
 const points = [
-  { icon: PencilRuler, text: "One dedicated designer from sketch to handover" },
-  { icon: Factory, text: "Made in our own Neopolis–Kokapet factory" },
-  { icon: ShieldCheck, text: "Backed by a warranty of up to 10 years" },
+  { icon: PencilRuler, text: "Own modular factory" },
+  { icon: Factory, text: "Premium materials" },
+  { icon: ShieldCheck, text: "On-time delivery" },
 ];
 
 function Photo({ label, className, ...props }) {
@@ -31,17 +31,16 @@ export default function BrandIntro() {
       <div className="container-x grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-14">
         <div className="lg:col-span-5">
           <Reveal>
-            <p className="eyebrow text-gold-soft">Who we are</p>
+            <p className="eyebrow text-gold-soft">In-house Manufacturing</p>
           </Reveal>
           <LineReveal
             id="intro-title"
-            lines={["Made For Your Home.", <em key="e" className="text-gold-soft">Built In Our Factory.</em>]}
+            lines={["Our Modular", <em key="e" className="text-gold-soft">Factory</em>]}
             className="mt-5 font-serif text-headline"
           />
           <Reveal delay={0.15}>
             <p className="mt-6 text-lg leading-relaxed text-cream/85">
-              CasaArt brings bespoke design and precise modular engineering together under one roof — so we control the quality, the price and the
-              timeline.
+              We have our own modular factory for better finishes, superior quality and on-time delivery. Owning our production means we control every stage — from raw material to final installation — so nothing is left to chance.
             </p>
             <ul className="mt-8 space-y-4">
               {points.map((p) => (

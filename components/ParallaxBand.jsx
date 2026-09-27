@@ -27,20 +27,20 @@ export default function ParallaxBand() {
 
       <div className="container-x relative py-28 text-center md:py-44">
         <Reveal>
-          <p className="eyebrow text-gold-soft">From our factory to your front door</p>
+          <p className="eyebrow text-gold-soft">CasaArt</p>
         </Reveal>
         <LineReveal
           id="band-title"
-          lines={["Every Detail Measured.", <em key="e" className="text-gold-soft">Every Promise Kept.</em>]}
+          lines={["Ready to design", <em key="e" className="text-gold-soft">your dream home?</em>]}
           className="mx-auto mt-6 max-w-4xl font-serif text-headline font-light"
         />
         <Reveal delay={0.2}>
           <Ornament light className="mt-7" />
           <p className="mx-auto mt-6 max-w-lg leading-relaxed text-cream/75">
-            Visit our Neopolis–Kokapet facility and watch your kitchen, wardrobes and panels take shape — before they ever reach your home.
+            Book a free consultation with CasaArt today and get a transparent quote within your budget.
           </p>
           <div className="mt-10 flex justify-center">
-            <Button variant="gold" onClick={openEnquiry}>Book a Factory Visit</Button>
+            <Button variant="gold" onClick={openEnquiry}>Book Free Consultation</Button>
           </div>
         </Reveal>
       </div>

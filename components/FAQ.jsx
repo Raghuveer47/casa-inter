@@ -13,7 +13,12 @@ export default function FAQ() {
   return (
     <section aria-labelledby="faq-title" className="theme-light section-y">
       <div className="container-x">
-        <SectionHeading id="faq-title" eyebrow="Good to know" lines={["Frequently Asked", <em key="e" className="text-earth">Questions</em>]} />
+        <SectionHeading
+          id="faq-title"
+          eyebrow="Good to know"
+          lines={["Frequently Asked", <em key="e" className="text-earth">Questions</em>]}
+          intro="Everything you need to know before starting your interior project."
+        />
         <ul className="mx-auto mt-14 max-w-3xl space-y-3 md:mt-16">
           {faqs.map((f, i) => {
             const isOpen = open === i;

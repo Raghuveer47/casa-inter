@@ -31,9 +31,9 @@ export default function PackagePlanner() {
       <div className="container-x">
         <SectionHeading
           id="planner-title"
-          eyebrow="Plan your budget"
-          lines={["Find Your", <em key="e" className="text-earth">Interior Package</em>]}
-          intro="Tell us your home size and see what's included, with an indicative starting price. Your exact quote follows a free site visit."
+          eyebrow="Transparent pricing"
+          lines={["Interior", <em key="e" className="text-earth">Packages</em>]}
+          intro="Choose a package that suits your home and budget. Final pricing is confirmed after a free site visit."
         />
 
         <div className="mt-12 grid gap-6 md:mt-16 lg:grid-cols-12 lg:gap-8">
@@ -109,12 +109,12 @@ export default function PackagePlanner() {
                     onClick={openEnquiry}
                     className="inline-flex min-h-12 items-center justify-center rounded-full bg-accent-bright px-7 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-night transition-opacity hover:opacity-90"
                   >
-                    Get my exact quote
+                    Get This Package
                   </button>
                 </div>
               </motion.div>
             </AnimatePresence>
-            <p className="mt-4 text-xs text-muted">*Indicative starting prices. Final pricing depends on size, finishes and scope, confirmed after a free site visit.</p>
+            <p className="mt-4 text-xs text-muted">*Indicative starting prices. Final quote provided after a free site measurement.</p>
           </Reveal>
         </div>
 

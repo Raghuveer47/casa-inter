@@ -26,22 +26,22 @@ export default function CTA() {
 
       <div className="container-x relative py-28 text-center md:py-40">
         <Reveal>
-          <p className="eyebrow text-gold-soft">Start your transformation</p>
+          <p className="eyebrow text-gold-soft">CasaArt</p>
         </Reveal>
         <LineReveal
           id="cta-title"
-          lines={["Let's Build the Home", <em key="e" className="text-gold-soft">You Have Imagined</em>]}
+          lines={["Ready to design", <em key="e" className="text-gold-soft">your dream home?</em>]}
           className="mx-auto mt-6 max-w-4xl font-serif text-headline font-light"
         />
         <Reveal delay={0.3}>
           <Ornament light className="mt-7" />
           <p className="mx-auto mt-7 max-w-md text-lg leading-relaxed text-cream/75">
-            Share your floor plan with our designers and receive a 3D concept with a factory-direct estimate within 24 hours.
+            Book a free consultation with CasaArt today and get a transparent quote within your budget.
           </p>
           <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-            <Button variant="gold" onClick={openEnquiry}>Get a Free Quote</Button>
+            <Button variant="gold" onClick={openEnquiry}>Book Free Consultation</Button>
             <Button href={site.whatsapp.href} variant="outlineLight" target="_blank" rel="noopener noreferrer">
-              WhatsApp CASART
+              Chat on WhatsApp
             </Button>
           </div>
         </Reveal>

@@ -81,7 +81,7 @@ export async function POST(request) {
     entry.message || "No message.",
   ].join("\n");
 
-  const thankYou = `Hello ${entry.name},\n\nThank you for contacting ${site.name}. We have received your enquiry and our designer will call you shortly to schedule your consultation.\n\n— ${site.name}\n${site.contact.phone}\n${site.contact.email}`;
+  const thankYou = `Hello ${entry.name},\n\nThank you for contacting ${site.name}. We have received your enquiry. The first design consultation and quote are completely free, with no obligation.\n\n— ${site.name}\n${site.contact.phone}\n${site.contact.email}`;
 
   let visitor;
   let owner;

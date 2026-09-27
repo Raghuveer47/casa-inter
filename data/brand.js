@@ -3,31 +3,30 @@
 import { images } from "./images";
 
 export const whyCasart = [
-  { title: "Factory-Direct Pricing", body: "Everything is made in our own Kokapet facility, so you pay for craftsmanship — not for middlemen or outsourced workshops." },
-  { title: "Made in About 45 Days", body: "Modular work is typically manufactured and delivered within 45 days of design sign-off, with a timeline agreed up front." },
-  { title: "Precision Craftsmanship", body: "CNC-cut panels and seamless edge banding give crisp lines, tight joints and finishes that stay beautiful." },
-  { title: "Fully Customised", body: "Sizes, finishes, handles and interiors are chosen for your home — nothing is forced to fit a catalogue." },
-  { title: "3D Walkthroughs", body: "See your rooms in realistic 3D, with your finishes and lighting, before a single panel is cut." },
-  { title: "One Dedicated Designer", body: "The same designer guides you from the first sketch to handover, so nothing gets lost along the way." },
-  { title: "Own Installation Team", body: "Trained CasaArt installers — never sub-contractors — assemble, align and finish every unit on site." },
-  { title: "Up to 10-Year Warranty", body: "Long warranties on modular work and a responsive after-sales team whenever you need us." },
+  { title: "Creative Design", body: "Custom designs tailored for every client and lifestyle, with detailed 3D visualisation." },
+  { title: "Superior Quality", body: "Factory-made modular units and premium materials for a flawless, lasting finish." },
+  { title: "Great Guarantee", body: "Confident warranties across our packages for total peace of mind." },
+  { title: "Timely Delivery", body: "Our own factory means faster production and reliable, on-time handover." },
+  { title: "Transparent Pricing", body: "Clear, itemised quotes with no hidden costs — luxury within your budget." },
+  { title: "Premium Materials", body: "Only high-grade boards, hardware and finishes, installed by our expert team." },
 ];
 
 // "Designed here. Built here." — what owning the factory changes.
 export const differentiators = [
-  { title: "Sharper Finish", body: "Millimetre-accurate CNC cutting and zero-gap edge banding for clean lines and smooth shutters." },
-  { title: "Consistent Quality", body: "Calibrated BWP plywood and branded hardware, used the same way in every home we build." },
-  { title: "One Accountable Team", body: "Design, manufacturing and installation under one roof — one point of contact from 3D to keys." },
+  { title: "Superior finishes and consistent quality" },
+  { title: "Faster production and reliable timelines" },
+  { title: "Premium, moisture-resistant materials" },
+  { title: "Professional installation by our own team" },
 ];
 
 // Builders and communities shown in the homepage "Trusted By" logo marquee.
 // Entries without a logo render as a text wordmark.
 export const trustedBy = [
-  { name: "INDIS", logo: "/trusted/indis-logo-light.svg" },
-  { name: "LODHA", logo: "/trusted/asbl-lodha-logo.png" },
-  { name: "Aparna Constructions", logo: "/trusted/aparna-logo.svg" },
-  { name: "Janapriya UPSCALE", logo: "/trusted/janapriya-logo.png" },
-  { name: "My Home Bhooja", logo: "/trusted/bhooja_logo.png" },
+  { name: "INDIS", logo: "/assets/companies_trusted/indis-logo-light.svg" },
+  { name: "LODHA", logo: "/assets/companies_trusted/asbl-lodha-logo.png" },
+  { name: "Aparna Constructions", logo: "/assets/companies_trusted/aparna-logo.svg" },
+  { name: "Janapriya UPSCALE", logo: "/assets/companies_trusted/janapriya-logo.png" },
+  { name: "My Home Bhooja", logo: "/assets/companies_trusted/bhooja_logo.png" },
   { name: "Prestige High Fields" },
 ];
 
@@ -37,7 +36,7 @@ export const communities = ["Prestige High Fields", "My Home Mangala", "My Home 
 export const materialBrands = [
   { group: "Plywood & boards", names: ["Century", "Greenply", "Austin", "Action Tesa", "Sylvan", "Architect Ply"] },
   { group: "Hardware", names: ["Hettich", "Hafele", "Blum", "Nimmi", "Ebco"] },
-  { group: "Ceiling", names: ["Saint-Gobain Gyproc", "Gypsoman"] },
+  { group: "POP / Ceiling", names: ["Saint-Gobain Gyproc", "Gypsoman"] },
   { group: "Electrical", names: ["Polycab", "Finolex", "Havells", "Wipro", "Jaquar"] },
 ];
 
@@ -45,59 +44,38 @@ export const materialBrands = [
 export const testimonials = [
   {
     quote:
-      "Casa Art delivered our 3BHK interiors on time and within budget. Their own factory really shows — the modular kitchen finish is superb and the team was highly professional.",
+      "Casa Art delivered our 3BHK interiors on time and within budget. Their own factory really shows - the modular kitchen finish is superb and the team was highly professional.",
     name: "Sandeep Reddy",
-    detail: "3BHK interiors · Kokapet, Hyderabad",
+    detail: "Kokapet, Hyderabad",
   },
   {
     quote: "From 3D design to handover the process was transparent. The false ceiling and wardrobes turned out exactly as promised. Truly premium quality.",
     name: "Divya Rao",
-    detail: "Wardrobes & ceiling · Gachibowli, Hyderabad",
+    detail: "Gachibowli, Hyderabad",
   },
   {
-    quote: "Excellent end-to-end execution — kitchen, painting, electrical and glass works all handled by one team. Great value for a luxury finish.",
+    quote: "Excellent end-to-end execution - kitchen, painting, electrical and glass works all handled by one team. Great value for a luxury finish.",
     name: "Imran Khan",
-    detail: "Complete interiors · Neopolis, Hyderabad",
+    detail: "Neopolis, Hyderabad",
   },
 ];
 
 export const faqs = [
   {
-    q: "What modular interior services does CASART provide?",
-    a: "Modular kitchens, wardrobes, bedrooms, living and dining rooms, pooja units, study rooms, partitions, storage and complete homes — plus false ceilings, painting, electrical, glass works and custom furniture, all handled by one team.",
+    q: "How long does a full home interior take?",
+    a: "A typical 2-3BHK full home interior takes 45-60 days after design sign-off, depending on scope and site conditions.",
   },
   {
-    q: "How much does a complete home interior cost?",
-    a: "It depends on the size of your home, the finishes and the scope of woodwork. As a guide, complete interiors for a 2BHK or 3BHK usually fall between ₹8 and ₹25 lakh. Because we manufacture in our own factory, you get an itemised, factory-direct quote with no hidden costs.",
+    q: "Do you offer a warranty?",
+    a: "Yes. Our packages include warranties ranging from 1 to 10 years depending on the materials and package you choose.",
   },
   {
-    q: "How long does a modular project take?",
-    a: "Modular kitchens, wardrobes and TV units usually take 35–45 working days after the design is final. A complete turnkey home — with ceilings, painting, glass and electrical — is typically handed over in 45–60 days.",
+    q: "Can I get a design within my budget?",
+    a: "Absolutely. Share your budget in the quote form and our designers will tailor a solution that fits it.",
   },
   {
-    q: "How does the design process work?",
-    a: "A free consultation, laser site measurement, 3D design, material selection with samples, manufacturing in our factory, installation by our own team and a final quality walkthrough before handover.",
-  },
-  {
-    q: "Do you provide 3D designs?",
-    a: "Yes. After measuring your home, your designer prepares realistic 3D views of every room so you can see layouts, textures and lighting before production begins.",
-  },
-  {
-    q: "Do you manufacture your own modular interiors?",
-    a: "Yes. Our modular manufacturing unit is at Neopolis–Kokapet, Hyderabad. You are welcome to visit and see your interiors being made.",
-  },
-  {
-    q: "What materials and finishes are available?",
-    a: "Laminates, acrylic, PU, veneer and glass shutters on BWP plywood, with branded hardware, a choice of handles and several countertop options. See Materials & Finishes for details.",
-  },
-  { q: "Do you provide installation and site visits?", a: "Yes. Site visits and floor-plan evaluations are free across Hyderabad, and every project is installed by our own team." },
-  {
-    q: "Which areas in Hyderabad do you serve?",
-    a: "Homes across Hyderabad, including Kokapet, Neopolis, Narsingi, Gachibowli, Financial District, Hitec City, Madhapur, Jubilee Hills, Banjara Hills, Kondapur, Tellapur and Manikonda.",
-  },
-  {
-    q: "How do I book a consultation?",
-    a: "Tap Get a Free Quote, message us on WhatsApp or call us. Share your floor plan if you have one, and we will set up a consultation — and a factory visit if you would like one.",
+    q: "Do you provide free design consultation?",
+    a: "Yes, the first design consultation and quote are completely free with no obligation.",
   },
 ];
 

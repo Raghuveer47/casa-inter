@@ -82,7 +82,7 @@ export default function QuotePopup() {
               <Image src={images.livingLuxury} alt="" fill sizes="40vw" className="object-cover" />
               <div className="absolute inset-0 bg-linear-to-t from-night/90 via-night/30 to-transparent" />
               <ul className="absolute inset-x-8 bottom-8 space-y-2 text-sm text-cream/85">
-                {["Free site visit & 3D concept", "Factory-direct, itemised quote", "Up to 10-year warranty"].map((x) => (
+                {["Own modular factory", "Premium materials", "On-time delivery"].map((x) => (
                   <li key={x} className="flex items-center gap-2">
                     <Check aria-hidden="true" strokeWidth={1.5} className="size-4 text-gold-soft" /> {x}
                   </li>
@@ -100,11 +100,11 @@ export default function QuotePopup() {
               >
                 <X strokeWidth={1.5} className="size-5" />
               </button>
-              <p className="inline-flex rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-gold-soft">Free design consultation</p>
+              <p className="inline-flex rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-gold-soft">No cost, no obligation</p>
               <h2 id="quote-popup-title" className="mt-3 pr-10 font-serif text-3xl font-light leading-tight sm:mt-4 sm:text-4xl">
-                Get a <em className="text-gold-soft">Free Quote</em>
+                Book Your Free <em className="text-gold-soft">Design Session</em>
               </h2>
-              <p className="mt-3 hidden text-sm leading-relaxed text-muted sm:block">A personalised 3D concept and factory-direct estimate for your home — no obligation.</p>
+              <p className="mt-3 hidden text-sm leading-relaxed text-muted sm:block">Get an estimate today. Your details are safe. No spam, ever.</p>
               <div className="mt-4 sm:mt-5">
                 <EnquiryForm
                   compact

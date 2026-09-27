@@ -19,17 +19,17 @@ export default function Consultation({ source = "Homepage" }) {
       <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <Reveal>
-            <p className="eyebrow text-gold-soft">Book a Consultation</p>
+            <p className="eyebrow text-gold-soft">Come say hello</p>
           </Reveal>
           <LineReveal
             id="consultation-title"
-            lines={["Let's Design", <em key="e" className="text-beige">Your Home</em>]}
+            lines={["Visit Our", <em key="e" className="text-beige">Facility</em>]}
             className="mt-5 font-serif text-headline font-light"
           />
           <Reveal delay={0.1}>
             <Ornament light className="mt-6" />
             <p className="mt-6 max-w-md text-lg leading-relaxed text-cream/70">
-              Share a few details and our designer will call you back. The first consultation and quote are free, with no obligation.
+              Experience CasaArt quality in person at our Kokapet–Neopolis facility in Hyderabad. The first design consultation and quote are completely free with no obligation.
             </p>
             <ul className="mt-10 grid gap-3">
               {contacts.map((c) => (

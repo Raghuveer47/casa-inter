@@ -73,8 +73,8 @@ export default function MaterialsPage() {
           <SectionHeading
             id="brands-title"
             eyebrow="Quality you can trust"
-            lines={["Brands", <em key="e" className="text-earth">We Work With</em>]}
-            intro="We use reputed material and hardware brands to deliver long-lasting interiors. Exact brands are confirmed in your itemised quote."
+            lines={["Our Trusted", <em key="e" className="text-earth">Material Brands</em>]}
+            intro="We work with reputed material and hardware brands to deliver long-lasting interiors."
           />
           <div className="mx-auto mt-14 grid max-w-5xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {materialBrands.map((g) => (

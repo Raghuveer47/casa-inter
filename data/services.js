@@ -6,9 +6,8 @@ export const services = [
   {
     slug: "modular-kitchens",
     title: "Modular Kitchens",
-    short: "Kitchens planned around how you cook — every drawer, corner and appliance in its place.",
-    description:
-      "CasaArt designs and manufactures ergonomic modular kitchens in our own factory — soft-close hardware, moisture-resistant materials and premium finishes tailored to how you cook.",
+    short: "Factory-made modular kitchens with premium finishes.",
+    description: "Factory-made modular kitchens with premium finishes.",
     features: ["L, U, parallel and island layouts", "Tall pantry and corner solutions", "Moisture-resistant carcass", "Soft-close drawers and hinges", "Countertop and backsplash options"],
     image: images.kitchen,
     core: true,
@@ -17,9 +16,8 @@ export const services = [
   {
     slug: "modular-wardrobes",
     title: "Modular Wardrobes",
-    short: "Sliding or hinged wardrobes with interiors organised for the way you dress.",
-    description:
-      "Custom sliding and hinged wardrobes with smart internal storage, loft units and premium shutters, factory-finished for durability and a flawless look.",
+    short: "Sleek sliding & hinged wardrobes that maximise space.",
+    description: "Sleek sliding & hinged wardrobes that maximise space.",
     features: ["Sliding and hinged shutters", "Loft and full-height units", "Drawers, trays and hanging zones", "Mirror, glass and PU finishes", "Soft-close and sliding hardware"],
     image: images.bedroomContemporary,
     core: true,
@@ -34,7 +32,6 @@ export const services = [
     features: ["Wardrobes and lofts", "Beds and headboard walls", "TV units and dressers", "Study and work nooks", "Cove and ambient lighting"],
     image: images.bedroomSuite,
     core: true,
-    featured: true,
   },
   {
     slug: "living-room-interiors",
@@ -45,7 +42,6 @@ export const services = [
     features: ["TV and feature walls", "Crockery and display units", "Shoe and foyer storage", "Pooja units", "False ceiling and lighting"],
     image: images.livingLuxury,
     core: true,
-    featured: true,
   },
   {
     slug: "dining-rooms",
@@ -56,7 +52,6 @@ export const services = [
     features: ["Crockery and display units", "Bar and buffet counters", "Wall panelling", "Pendant and cove lighting", "Space-saving layouts for compact homes"],
     image: images.dining,
     core: true,
-    featured: true,
   },
   {
     slug: "pooja-rooms",
@@ -67,7 +62,6 @@ export const services = [
     features: ["Wall-mounted and floor units", "CNC jaali and backlit panels", "Storage for puja essentials", "Marble-look and veneer finishes", "Bells, brass and warm lighting"],
     image: images.pooja,
     core: true,
-    featured: true,
   },
   {
     slug: "study-rooms",
@@ -78,7 +72,6 @@ export const services = [
     features: ["Custom desks and shelving", "Book and file storage", "Cable management", "Task lighting", "Kids study units"],
     image: images.office,
     core: true,
-    featured: true,
   },
   {
     slug: "partitions",
@@ -112,10 +105,9 @@ export const services = [
   },
   {
     slug: "full-home-interiors",
-    title: "Complete Modular Interiors",
-    short: "Every room designed and delivered together — one team, one timeline, keys in hand.",
-    description:
-      "From design to handover, CasaArt executes your complete home interiors — kitchen, wardrobes, ceilings, painting, electrical and decor — on time, with one team accountable for everything.",
+    title: "Full Home Interiors",
+    short: "End-to-end interiors, one design partner.",
+    description: "End-to-end interiors, one design partner.",
     features: ["Single point of contact", "Coordinated design across rooms", "Modular, civil and finishing works", "Transparent itemised quote", "Handover-ready home"],
     image: images.livingModern,
     core: true,
@@ -124,40 +116,45 @@ export const services = [
   {
     slug: "false-ceiling",
     title: "False Ceiling",
-    short: "Designer POP and gypsum ceilings with cove lighting.",
-    description: "POP and gypsum false ceilings with layered cove lighting that add depth, elegance and a premium finish to every room.",
+    short: "Designer false ceilings with cove lighting.",
+    description: "Designer false ceilings with cove lighting.",
+    featured: true,
     features: ["Gypsum and POP ceilings", "Cove and profile lighting", "Room-specific designs", "Concealed AC and wiring provision"],
     image: images.livingArched,
   },
   {
     slug: "painting-works",
     title: "Painting Works",
-    short: "Premium interior painting, textures and accent walls.",
-    description: "Flawless painting with premium emulsions, textures and accent walls, executed by skilled painters for a rich, long-lasting finish.",
+    short: "Premium interior & exterior painting.",
+    description: "Premium interior & exterior painting.",
+    featured: true,
     features: ["Premium emulsions", "Texture and accent walls", "Surface preparation", "Clean, protected site"],
     image: images.livingCalm,
   },
   {
     slug: "electrical-works",
     title: "Electrical Works",
-    short: "Safe, planned electrical and lighting layouts.",
-    description: "Complete electrical planning, concealed wiring, smart switches and designer lighting layouts handled by certified professionals.",
+    short: "Safe, planned electrical & lighting.",
+    description: "Safe, planned electrical & lighting.",
+    featured: true,
     features: ["Lighting layout planning", "Concealed wiring", "Modular and smart switches", "Appliance points planned with the kitchen"],
     image: images.livingDark,
   },
   {
     slug: "glass-works",
     title: "Glass Works",
-    short: "Elegant glass partitions, shower screens and mirrors.",
-    description: "Toughened glass partitions, shower enclosures, mirrors and railings that bring a modern, luxurious touch to your interiors.",
+    short: "Elegant glass partitions & shower screens.",
+    description: "Elegant glass partitions & shower screens.",
+    featured: true,
     features: ["Toughened glass partitions", "Shower enclosures", "Mirrors and back-painted glass", "Glass shutters for units"],
     image: images.glassShower,
   },
   {
     slug: "sofas-and-beds",
     title: "Sofas and Beds",
-    short: "Custom-made sofas, beds and upholstery.",
-    description: "Bespoke sofas, beds, headboards and upholstery crafted to your dimensions and style with premium fabrics and foam.",
+    short: "Custom-made sofas, beds & upholstery.",
+    description: "Custom-made sofas, beds & upholstery.",
+    featured: true,
     features: ["Made to your dimensions", "Headboards and upholstery", "Premium fabrics and foam", "Storage beds"],
     image: images.bedroomGrey,
   },
@@ -167,15 +164,13 @@ export const coreServices = services.filter((s) => s.core);
 export const featuredServices = services.filter((s) => s.featured);
 export const getService = (slug) => services.find((s) => s.slug === slug);
 
-// Process from the brief (01–07).
+// How it works, as published on casaartinteriors.com.
 export const process = [
-  { title: "Consultation", description: "We start by listening — your routine, your taste, your budget. The first meeting is free, at our studio or yours." },
-  { title: "Site Measurement", description: "Our team visits your home and records exact laser measurements, so every module fits to the millimetre." },
-  { title: "Design & 3D Visualization", description: "Your designer builds realistic 3D views and a mood board, so you can walk through each room before anything is made." },
-  { title: "Material Selection", description: "Pick finishes, hardware and countertops with real samples, then sign off a clear, itemised quote." },
-  { title: "Manufacturing", description: "Panels are CNC-cut and edge-banded in our Kokapet factory, with checks at every stage." },
-  { title: "Installation", description: "Our own installers assemble everything on site — no sub-contractors — and fine-tune every hinge and shutter." },
-  { title: "Final Handover", description: "A detailed quality walkthrough, a deep clean and the keys. Your warranty and after-sales support start here." },
+  { title: "Meet a Designer", description: "Free" },
+  { title: "Book Your Project", description: "5% payment" },
+  { title: "Execution Begins", description: "60% payment" },
+  { title: "Final Installations", description: "100% payment" },
+  { title: "Move In and Enjoy", description: "Move in and enjoy!" },
 ];
 
 // Payment milestones as published on casaartinteriors.com.
@@ -191,7 +186,7 @@ export const paymentMilestones = [
 export const packages = [
   {
     name: "Essential Interior Package",
-    bestFor: "Compact 1–2BHK homes",
+    bestFor: "Best for compact 1-2BHK homes",
     price: "₹3.9 Lakh*",
     items: ["Factory-made modular kitchen", "1 modular wardrobe", "Basic false ceiling in living", "Premium laminate finishes", "Painting for key areas", "1 year warranty"],
   },
@@ -204,7 +199,7 @@ export const packages = [
   },
   {
     name: "Luxury Complete Home Package",
-    bestFor: "3BHK, villas & luxury apartments",
+    bestFor: "Complete 3BHK, villa & luxury apartments",
     price: "₹9.6 Lakh*",
     items: ["Designer modular kitchen", "Custom wardrobes for all rooms", "Full home false ceiling & lighting", "Custom sofas, beds & decor", "Imported premium finishes", "Full painting, electrical & glass works", "10 year warranty"],
   },

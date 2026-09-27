@@ -18,9 +18,9 @@ export default function WhyCasart() {
       <div className="container-x">
         <SectionHeading
           id="why-title"
-          eyebrow="Why CASART"
-          lines={["Why Homeowners", <em key="e" className="text-earth">Choose Us</em>]}
-          intro="Owning the whole journey — design, factory and installation — is what lets us promise quality, price and time."
+          eyebrow="The CasaArt difference"
+          lines={["Why Choose", <em key="e" className="text-earth">CasaArt?</em>]}
+          intro="Design and execution under one roof, backed by our own modular factory for complete control over quality."
         />
 
         <ul className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 md:mt-16 lg:grid-cols-4 lg:gap-x-10 lg:gap-y-14">
@@ -43,12 +43,12 @@ export default function WhyCasart() {
           <div className="absolute inset-0 bg-linear-to-r from-black/85 via-black/65 to-black/30" />
           <div className="relative flex flex-col items-start gap-6 px-6 py-10 text-[#f5f1eb] sm:px-12 sm:py-14 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="text-2xl font-semibold leading-snug sm:text-3xl">Factory-direct pricing. Handover on time.</p>
+              <p className="text-2xl font-semibold leading-snug sm:text-3xl">Complete control over quality.</p>
               <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#f5f1eb]/80 sm:text-base">
-                See your home in 3D and get an itemised, no-obligation estimate from our designers.
+                We have our own modular factory for better finishes, superior quality and on-time delivery.
               </p>
             </div>
-            <Button variant="gold" onClick={openEnquiry} className="shrink-0">Get a Free Quote</Button>
+            <Button variant="gold" onClick={openEnquiry} className="shrink-0">Book a Factory-quality Quote</Button>
           </div>
         </Reveal>
       </div>

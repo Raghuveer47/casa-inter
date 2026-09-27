@@ -2,18 +2,19 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { BadgeCheck, ChevronLeft, ChevronRight } from "lucide-react";
 import Button from "./ui/Button";
 import EnquiryForm from "./EnquiryForm";
 import { useEnquiry } from "./EnquiryProvider";
 import { EASE } from "@/lib/utils";
 import { images } from "@/data/images";
+import { site } from "@/lib/site";
 
 const SLIDES = [
-  { src: images.hero, alt: "Contemporary living room with warm timber panelling", title: "Beautifully Designed.", accent: "Expertly Crafted." },
-  { src: images.kitchen, alt: "Modular kitchen with handle-less cabinets", title: "Kitchens That Work.", accent: "Made To Measure." },
-  { src: images.bedroomSuite, alt: "Calm bedroom with a panelled headboard wall", title: "Rooms To Unwind In.", accent: "Built In Our Factory." },
+  { src: images.hero, alt: "Contemporary living room with warm timber panelling" },
+  { src: images.kitchen, alt: "Modular kitchen with handle-less cabinets" },
+  { src: images.bedroomSuite, alt: "Calm bedroom with a panelled headboard wall" },
 ];
 const INTERVAL = 6000;
 
@@ -35,8 +36,6 @@ export default function Hero() {
     const t = setTimeout(() => go(1), INTERVAL);
     return () => clearTimeout(t);
   }, [index, paused, go]);
-
-  const slide = SLIDES[index];
 
   return (
     <section
@@ -75,23 +74,19 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          Luxury Interiors · Own Modular Factory · Hyderabad
+          Official Interior Design Company
         </motion.p>
 
-        <AnimatePresence mode="wait">
-          <motion.h1
-            key={slide.title}
-            className="max-w-3xl font-serif text-display lg:text-[clamp(3rem,4.4vw,4.4rem)] drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]"
-            initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -12, filter: "blur(6px)" }}
-            transition={{ duration: 0.7, ease: EASE }}
-          >
-            {slide.title}
-            <br />
-            <em className="text-gold-soft">{slide.accent}</em>
-          </motion.h1>
-        </AnimatePresence>
+        <motion.h1
+          className="max-w-3xl font-serif text-display lg:text-[clamp(3rem,4.4vw,4.4rem)] drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]"
+          initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.7, ease: EASE }}
+        >
+          Luxury Interior Design
+          <br />
+          <em className="text-gold-soft">In Your Budget</em>
+        </motion.h1>
 
         <motion.p
           className="mt-6 max-w-md text-base leading-relaxed text-[#f1f2f4]/85 md:text-lg"
@@ -99,7 +94,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: 0.6 }}
         >
-          Bespoke interiors, designed around your life and built in our own factory in Neopolis–Kokapet.
+          We design and execute complete home interiors tailored to your lifestyle and budget.
         </motion.p>
         <motion.div
           className="mt-8 flex flex-col gap-3 sm:flex-row"
@@ -107,18 +102,22 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: 0.75 }}
         >
-          <Button variant="gold" onClick={openEnquiry}>Get a Free Quote</Button>
-          <Button href="/projects" variant="outlineLight">View Our Projects</Button>
+          <Button variant="gold" onClick={openEnquiry}>Get Free Quote</Button>
+          <Button href={site.whatsapp.href} variant="outlineLight" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</Button>
         </motion.div>
-        <motion.p
-          className="mt-8 flex items-center gap-2 text-sm text-[#f1f2f4]/85"
+        <motion.ul
+          className="mt-8 space-y-2 text-sm text-[#f1f2f4]/85"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 0.9 }}
         >
-          <BadgeCheck aria-hidden="true" strokeWidth={1.75} className="size-5 text-gold-soft" />
-          200+ homes completed across Hyderabad
-        </motion.p>
+          {["Own modular factory", "Premium materials", "On-time delivery"].map((item) => (
+            <li key={item} className="flex items-center gap-2">
+              <BadgeCheck aria-hidden="true" strokeWidth={1.75} className="size-5 text-gold-soft" />
+              {item}
+            </li>
+          ))}
+        </motion.ul>
        </div>
 
         <motion.div
@@ -127,9 +126,9 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: 0.8 }}
         >
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-gold-soft">Free design consultation</p>
-          <h2 className="mt-2 text-2xl font-bold">Request a callback</h2>
-          <p className="mt-1 text-sm text-[#f1f2f4]/70">Our designer calls you within one working day.</p>
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-gold-soft">No cost, no obligation</p>
+          <h2 className="mt-2 text-2xl font-bold">Book Your Free Design Session</h2>
+          <p className="mt-1 text-sm text-[#f1f2f4]/70">Get an estimate today. Your details are safe. No spam, ever.</p>
           <div className="mt-5">
             <EnquiryForm compact dark source="Hero callback card" />
           </div>

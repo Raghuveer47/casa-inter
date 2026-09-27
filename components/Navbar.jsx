@@ -110,7 +110,7 @@ export default function Navbar() {
                 light ? "border border-gold-soft text-cream hover:bg-gold hover:border-gold hover:text-on-accent" : "bg-gold text-on-accent hover:bg-clay"
               )}
             >
-              Book a Consultation
+              Get Free Quote
             </button>
             <button
               type="button"
@@ -181,7 +181,7 @@ export default function Navbar() {
                 }}
                 className="inline-flex min-h-12 items-center justify-center rounded-full bg-gold px-7 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-on-accent"
               >
-                Book a Consultation
+                Get Free Quote
               </button>
             </motion.div>
           </motion.div>

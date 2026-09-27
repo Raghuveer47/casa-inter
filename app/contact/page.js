@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 
 export const metadata = {
   title: "Contact",
-  description: "Book a free design consultation with CasaArt Interiors. Call, WhatsApp or visit our Neopolis–Kokapet facility in Hyderabad.",
+  description: "Visit CasaArt at our Kokapet–Neopolis facility in Hyderabad, or call and WhatsApp +91 8897969521.",
   alternates: { canonical: "/contact" },
 };
 
@@ -13,8 +13,8 @@ export default function ContactPage() {
     <>
       <PageHeader
         label="Contact"
-        lines={["Visit or", <em key="e" className="text-earth">Get in Touch</em>]}
-        intro={`Experience CasaArt quality in person at our Neopolis–Kokapet facility, or reach us on ${site.contact.phone}. ${site.contact.hours}.`}
+        lines={["Visit Our", <em key="e" className="text-earth">Facility</em>]}
+        intro={`Experience CasaArt quality in person at our Kokapet–Neopolis facility in Hyderabad. Call ${site.contact.phone} or email ${site.contact.email}.`}
       />
       <Consultation source="Contact page" />
       <section aria-label="Map" className="bg-ivory">

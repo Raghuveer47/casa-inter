@@ -1,10 +1,10 @@
-import { Factory, Handshake, KeyRound, MessagesSquare, Palette, Ruler, Wrench } from "lucide-react";
+import { Factory, Handshake, KeyRound, MessagesSquare, Wrench } from "lucide-react";
 import SectionHeading from "./ui/SectionHeading";
 import Reveal from "./ui/Reveal";
 import { process } from "@/data/services";
 import { cn } from "@/lib/utils";
 
-const icons = [MessagesSquare, Ruler, Palette, Handshake, Factory, Wrench, KeyRound];
+const icons = [MessagesSquare, Handshake, Factory, Wrench, KeyRound];
 
 // Numbered 01–07 timeline. Horizontal on desktop, vertical on mobile.
 export default function ProcessTimeline({ dark = false, heading = true }) {
@@ -15,13 +15,13 @@ export default function ProcessTimeline({ dark = false, heading = true }) {
           <SectionHeading
             id="process-title"
             light={dark}
-            eyebrow="Our Process"
-            lines={["Consultation", <em key="e" className={dark ? "text-beige" : "text-earth"}>To Handover</em>]}
-            intro="Seven clear stages, one accountable team — so you always know what happens next."
+            eyebrow="How It Works"
+            lines={["How It", <em key="e" className={dark ? "text-beige" : "text-earth"}>Works</em>]}
+            intro="From the first meeting to move-in, with the payment at each step."
           />
         )}
 
-        <ol className={cn("relative grid gap-10 lg:grid-cols-7 lg:gap-4", heading && "mt-16 md:mt-20")}>
+        <ol className={cn("relative grid gap-10 lg:grid-cols-5 lg:gap-4", heading && "mt-16 md:mt-20")}>
           <span aria-hidden="true" className={cn("absolute left-7 top-0 h-full w-px lg:left-0 lg:top-7 lg:h-px lg:w-full", dark ? "bg-cream/15" : "bg-line")} />
           {process.map((step, i) => {
             const Icon = icons[i];

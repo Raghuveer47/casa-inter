@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata = {
   title: "Services",
-  description: "Modular kitchens, wardrobes, bedroom and living room interiors, storage solutions and complete home interiors in Hyderabad by CasaArt.",
+  description: "From factory-made modular kitchens and wardrobes to complete luxury home interiors — one expert team, end to end.",
   alternates: { canonical: "/services" },
 };
 
@@ -23,15 +23,15 @@ export default function ServicesPage() {
     <>
       <PageHeader
         label="Services"
-        lines={["Our", <em key="e" className="text-earth">Services</em>]}
-        intro="From a single modular kitchen to a complete home, we design, manufacture and install with one accountable team."
+        lines={["Our Interior", <em key="e" className="text-earth">Design Services</em>]}
+        intro="From factory-made modular kitchens and wardrobes to complete luxury home interiors — one expert team, end to end."
         image={images.livingLuxury}
         imageAlt="Living room with modular TV unit and storage by CasaArt"
       />
 
       <section aria-labelledby="modular-title" className="section-y">
         <div className="container-x">
-          <SectionHeading id="modular-title" eyebrow="Modular interiors" lines={["What We", <em key="e" className="text-earth">Design & Build</em>]} />
+          <SectionHeading id="modular-title" eyebrow="What we do" lines={["Our Interior", <em key="e" className="text-earth">Design Services</em>]} intro="From factory-made modular kitchens and wardrobes to complete luxury home interiors — one expert team, end to end." />
           <ul className="mt-14 grid gap-6 sm:grid-cols-2 md:mt-20 lg:grid-cols-3 lg:gap-8">
             {coreServices.map((s, i) => (
               <Reveal as="li" key={s.slug} delay={(i % 3) * 0.08}>

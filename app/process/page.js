@@ -8,7 +8,7 @@ import { paymentMilestones } from "@/data/services";
 
 export const metadata = {
   title: "Our Process",
-  description: "How CasaArt delivers modular interiors: consultation, site measurement, 3D design, material selection, manufacturing, installation and handover.",
+  description: "How CasaArt works: meet a designer, book your project, execution, final installations, then move in and enjoy.",
   alternates: { canonical: "/process" },
 };
 
@@ -17,8 +17,8 @@ export default function ProcessPage() {
     <>
       <PageHeader
         label="Process"
-        lines={["Our", <em key="e" className="text-earth">Process</em>]}
-        intro="Seven clear stages from your first conversation to the day you move in — with one team accountable at every step."
+        lines={["How It", <em key="e" className="text-earth">Works</em>]}
+        intro="Meet a designer, book your project, begin execution, finish the installations, then move in and enjoy."
       />
 
       <ProcessTimeline heading={false} />
@@ -28,9 +28,9 @@ export default function ProcessPage() {
           <SectionHeading
             id="payments-title"
             light
-            eyebrow="Transparent payments"
-            lines={["Pay As Your", <em key="e" className="text-beige">Home Takes Shape</em>]}
-            intro="Clear payment milestones, so you always know what you pay for and when."
+            eyebrow="How It Works"
+            lines={["Payment At", <em key="e" className="text-beige">Each Step</em>]}
+            intro="5% to book your project, 60% when execution begins, and 100% at final installations."
           />
           <ol className="mx-auto mt-14 grid max-w-5xl gap-px border border-cream/12 bg-cream/12 sm:grid-cols-5">
             {paymentMilestones.map((m, i) => (

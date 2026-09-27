@@ -13,15 +13,16 @@ function Heading() {
     <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
       <div>
         <Reveal>
-          <p className="eyebrow text-gold">Featured Projects</p>
+          <p className="eyebrow text-gold">Our work</p>
         </Reveal>
         <LineReveal
-          lines={["Recent", <em key="e" className="text-earth">Projects</em>]}
+          lines={["Recent Interior", <em key="e" className="text-earth">Projects</em>]}
           className="mt-5 font-serif text-headline font-light"
         />
+        <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">Real spaces, real transformations.</p>
       </div>
       <Reveal delay={0.1}>
-        <ArrowLink href="/projects">View All Projects</ArrowLink>
+        <ArrowLink href="/projects">View Full Portfolio</ArrowLink>
       </Reveal>
     </div>
   );

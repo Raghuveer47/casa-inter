@@ -53,9 +53,9 @@ export default function Services() {
             id="services-title"
             light
             align="left"
-            eyebrow="Explore by room"
-            lines={["Every Room,", <em key="e" className="text-gold-soft">Thoughtfully Made</em>]}
-            intro="Pick a room to see how we design and build it — every piece made in our own factory."
+            eyebrow="What we do"
+            lines={["Our Interior", <em key="e" className="text-gold-soft">Design Services</em>]}
+            intro="From factory-made modular kitchens and wardrobes to complete luxury home interiors — one expert team, end to end."
           />
           <Reveal delay={0.1} className="shrink-0">
             <ArrowLink href="/services">View All Services</ArrowLink>
