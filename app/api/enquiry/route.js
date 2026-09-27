@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import { validateEnquiry } from "@/lib/enquiry";
 import { appendEnquiry } from "@/lib/enquiries-sheet";
 import { appendLiveSheet } from "@/lib/google-sheet";
+import { ownerMail, visitorMail } from "@/lib/mail";
 import { site } from "@/lib/site";
 
 export const runtime = "nodejs";
@@ -65,23 +66,8 @@ export async function POST(request) {
   }
 
   const resend = new Resend(apiKey);
-  const details = [
-    `Name: ${entry.name}`,
-    `Phone: ${entry.phone}`,
-    `Email: ${entry.email || "—"}`,
-    `Location: ${entry.location}`,
-    `Property type: ${entry.propertyType || "—"}`,
-    `Requirement: ${entry.requirement || "—"}`,
-    `Area: ${entry.area ? `${entry.area} sq.ft` : "—"}`,
-    `Budget: ${entry.budget || "—"}`,
-    `Preferred time: ${entry.preferredTime || "—"}`,
-    `Planning to start: ${entry.startTime || "—"}`,
-    `Source: ${entry.source}`,
-    "",
-    entry.message || "No message.",
-  ].join("\n");
-
-  const thankYou = `Hello ${entry.name},\n\nThank you for contacting ${site.name}. We have received your enquiry. The first design consultation and quote are completely free, with no obligation.\n\n— ${site.name}\n${site.contact.phone}\n${site.contact.email}`;
+  const thankYou = visitorMail(entry);
+  const notice = ownerMail(entry);
 
   let visitor;
   let owner;
@@ -94,15 +80,17 @@ export async function POST(request) {
             from,
             to: [entry.email],
             replyTo: to,
-            subject: `Thank you for contacting ${site.name}`,
-            text: thankYou,
+            subject: thankYou.subject,
+            html: thankYou.html,
+            text: thankYou.text,
           }),
       resend.emails.send({
         from,
         to: [to],
         ...(entry.email ? { replyTo: entry.email } : {}),
-        subject: `New consultation request from ${entry.name}`,
-        text: `A new enquiry just came in from the website.\n\n${details}`,
+        subject: notice.subject,
+        html: notice.html,
+        text: notice.text,
       }),
     ]);
   } catch (err) {
