@@ -12,9 +12,9 @@ import { cn, EASE } from "@/lib/utils";
 
 // Home types map onto the three indicative packages in data/services.js.
 const HOMES = [
-  { label: "1–2 BHK", note: "Compact homes", icon: Home },
-  { label: "2–3 BHK", note: "Family apartments", icon: Building2 },
-  { label: "3 BHK / Villa", note: "Luxury homes", icon: Castle },
+  { label: "2 BHK", note: "Starts from ₹4.9 Lakh", icon: Home },
+  { label: "3 BHK", note: "Starts from ₹6.9 Lakh", icon: Building2 },
+  { label: "3 BHK / Villa", note: "Starts from ₹10.6 Lakh", icon: Castle },
 ];
 
 // Interactive "find your package": pick a home type and see the matching

@@ -186,21 +186,21 @@ export const paymentMilestones = [
 export const packages = [
   {
     name: "Essential Interior Package",
-    bestFor: "Best for compact 1-2BHK homes",
-    price: "₹3.9 Lakh*",
+    bestFor: "Best for 2BHK homes",
+    price: "₹4.9 Lakh*",
     items: ["Factory-made modular kitchen", "1 modular wardrobe", "Basic false ceiling in living", "Premium laminate finishes", "Painting for key areas", "1 year warranty"],
   },
   {
     name: "Premium Home Interior Package",
-    bestFor: "Most popular for 2–3BHK homes",
-    price: "₹5.9 Lakh*",
+    bestFor: "Most popular for 3BHK homes",
+    price: "₹6.9 Lakh*",
     featured: true,
     items: ["Full modular kitchen with tall unit", "2–3 modular wardrobes", "False ceiling with cove lighting", "TV unit & crockery unit", "Complete painting & electrical", "Glass works", "5 year warranty"],
   },
   {
     name: "Luxury Complete Home Package",
-    bestFor: "Complete 3BHK, villa & luxury apartments",
-    price: "₹9.6 Lakh*",
+    bestFor: "3BHK villas and luxury apartments",
+    price: "₹10.6 Lakh*",
     items: ["Designer modular kitchen", "Custom wardrobes for all rooms", "Full home false ceiling & lighting", "Custom sofas, beds & decor", "Imported premium finishes", "Full painting, electrical & glass works", "10 year warranty"],
   },
 ];
