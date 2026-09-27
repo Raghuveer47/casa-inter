@@ -1,20 +1,17 @@
 import Hero from "@/components/Hero";
 import TrustedStrip from "@/components/TrustedStrip";
 import BrandIntro from "@/components/BrandIntro";
-import FeaturedDesigns from "@/components/FeaturedDesigns";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import WhyCasart from "@/components/WhyCasart";
 import BeforeAfter from "@/components/BeforeAfter";
-import ParallaxBand from "@/components/ParallaxBand";
-import MaterialsTeaser from "@/components/MaterialsTeaser";
+import PackagePlanner from "@/components/PackagePlanner";
 import ProcessTimeline from "@/components/ProcessTimeline";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Consultation from "@/components/Consultation";
-import SocialProof from "@/components/SocialProof";
 
-// Section order follows the CASART brief.
+// Kept deliberately lean: gallery, materials and Instagram live on their own pages.
 export default function HomePage() {
   return (
     <>
@@ -23,16 +20,13 @@ export default function HomePage() {
       <BrandIntro />
       <WhyCasart />
       <Services />
-      <FeaturedDesigns />
       <Projects />
-      <ParallaxBand />
+      <PackagePlanner />
       <BeforeAfter />
-      <MaterialsTeaser />
       <ProcessTimeline />
       <Testimonials />
       <FAQ />
       <Consultation />
-      <SocialProof />
     </>
   );
 }

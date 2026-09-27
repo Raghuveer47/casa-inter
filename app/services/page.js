@@ -79,7 +79,7 @@ export default function ServicesPage() {
                 delay={i * 0.08}
                 className={cn("relative flex flex-col border p-8 md:p-10", p.featured ? "border-gold bg-night text-cream" : "border-line bg-paper")}
               >
-                {p.featured && <span className="eyebrow absolute -top-3 left-8 bg-gold px-3 py-1 text-night">Most popular</span>}
+                {p.featured && <span className="eyebrow absolute -top-3 left-8 bg-gold px-3 py-1 text-on-accent">Most popular</span>}
                 <h3 className="font-serif text-2xl font-light md:text-3xl">{p.name}</h3>
                 <p className={cn("mt-2 text-sm", p.featured ? "text-cream/60" : "text-muted")}>{p.bestFor}</p>
                 <p className="mt-6 font-serif text-4xl">

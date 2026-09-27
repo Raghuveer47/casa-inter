@@ -4,6 +4,7 @@ import SectionHeading, { Ornament } from "@/components/ui/SectionHeading";
 import ImageReveal from "@/components/ui/ImageReveal";
 import Reveal from "@/components/ui/Reveal";
 import CTA from "@/components/CTA";
+import ParallaxBand from "@/components/ParallaxBand";
 import { communities } from "@/data/brand";
 import { images } from "@/data/images";
 import { site } from "@/lib/site";
@@ -107,6 +108,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <ParallaxBand />
       <CTA />
     </>
   );

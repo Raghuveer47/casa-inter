@@ -4,16 +4,16 @@ import { cn } from "@/lib/utils";
 
 const variants = {
   dark: "bg-cream text-night hover:bg-beige",
-  gold: "bg-gold text-night hover:bg-clay",
+  gold: "bg-gold text-on-accent hover:bg-clay",
   light: "bg-cream text-night hover:bg-beige",
-  outlineLight: "border border-cream/50 text-cream hover:bg-cream hover:text-night",
+  outlineLight: "border border-cream/40 bg-night/20 text-cream backdrop-blur-sm hover:bg-cream hover:text-night",
   outlineDark: "border border-cream/30 text-cream hover:border-gold hover:text-gold-soft",
 };
 
 // Renders a Link when `href` is given, otherwise a <button>.
 export default function Button({ href, variant = "dark", icon = true, className, children, ...rest }) {
   const classes = cn(
-    "group inline-flex min-h-12 items-center justify-center gap-3 whitespace-nowrap px-7 text-[0.8rem] font-medium uppercase tracking-[0.16em] transition-colors duration-500 ease-luxe disabled:cursor-not-allowed disabled:opacity-60",
+    "group inline-flex min-h-12 items-center justify-center gap-3 whitespace-nowrap rounded-full px-7 text-[0.8rem] font-semibold uppercase tracking-[0.14em] transition-colors duration-500 ease-luxe disabled:cursor-not-allowed disabled:opacity-60",
     variants[variant],
     className
   );

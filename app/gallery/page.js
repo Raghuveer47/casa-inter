@@ -1,6 +1,7 @@
 import PageHeader from "@/components/ui/PageHeader";
 import GalleryGrid from "@/components/GalleryGrid";
 import CTA from "@/components/CTA";
+import SocialProof from "@/components/SocialProof";
 import { PROJECT_FILTERS, allPhotos } from "@/data/projects";
 
 export const metadata = {
@@ -22,6 +23,7 @@ export default function GalleryPage() {
           <GalleryGrid photos={allPhotos} filters={PROJECT_FILTERS} />
         </div>
       </section>
+      <SocialProof />
       <CTA />
     </>
   );

@@ -81,6 +81,7 @@ export const images = {
 
   office: u("1522708323590-d24dbb6b0267"),
   workspace: u("1497366216548-37526070297c"),
+  workshop: u("1631396326838-de37e5f8bcbc"),
   pooja: u("1774301063167-66623449a95c"),
   cta: u("1600494603989-9650cf6ddd3d"),
   about: u("1567016432779-094069958ea5"),

@@ -31,17 +31,19 @@ export default function Consultation({ source = "Homepage" }) {
             <p className="mt-6 max-w-md text-lg leading-relaxed text-cream/70">
               Share a few details and our designer will call you back. The first consultation and quote are free, with no obligation.
             </p>
-            <ul className="mt-10 divide-y divide-cream/10 border-y border-cream/10">
+            <ul className="mt-10 grid gap-3">
               {contacts.map((c) => (
                 <li key={c.label}>
                   <a
                     href={c.href}
                     {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="flex items-start gap-4 py-4 transition-colors hover:text-gold-soft"
+                    className="flex items-start gap-4 rounded-2xl bg-cream/[0.04] p-4 transition-colors hover:bg-cream/[0.07] hover:text-gold-soft"
                   >
-                    <c.icon aria-hidden="true" strokeWidth={1.25} className="mt-0.5 size-5 shrink-0 text-gold-soft" />
+                    <span className="grid size-10 shrink-0 place-items-center rounded-full bg-gold/15 text-gold-soft">
+                      <c.icon aria-hidden="true" strokeWidth={1.5} className="size-[1.1rem]" />
+                    </span>
                     <span>
-                      <span className="eyebrow block text-cream/45">{c.label}</span>
+                      <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-cream/45">{c.label}</span>
                       <span className="mt-1 block text-sm leading-relaxed [overflow-wrap:anywhere]">{c.value}</span>
                     </span>
                   </a>
@@ -50,7 +52,7 @@ export default function Consultation({ source = "Homepage" }) {
             </ul>
           </Reveal>
         </div>
-        <Reveal delay={0.1} className="border border-cream/12 p-6 sm:p-10 lg:col-span-7">
+        <Reveal delay={0.1} className="rounded-3xl border border-cream/10 bg-ivory p-5 shadow-[0_24px_60px_rgba(0,0,0,0.35)] sm:p-10 lg:col-span-7">
           <EnquiryForm source={source} dark />
         </Reveal>
       </div>

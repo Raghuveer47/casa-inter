@@ -17,9 +17,9 @@ export default function ProjectCard({ project, index, className, ratio = "aspect
             className="object-cover transition-transform duration-[1400ms] ease-luxe group-hover:scale-[1.04]"
           />
           {index !== undefined && (
-            <span className="absolute left-5 top-5 font-serif text-lg italic text-cream drop-shadow">{String(index + 1).padStart(2, "0")}</span>
+            <span className="absolute left-4 top-4 rounded-full bg-night/60 px-3 py-1 text-xs font-semibold text-[#f2ebdf] backdrop-blur-sm">{String(index + 1).padStart(2, "0")}</span>
           )}
-          <span className="eyebrow absolute bottom-5 right-5 inline-flex items-center gap-1.5 bg-night/65 px-3 py-2 text-cream backdrop-blur-sm">
+          <span className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 rounded-full bg-night/65 px-3 py-1.5 text-xs font-semibold text-[#f2ebdf] backdrop-blur-sm">
             <Images aria-hidden="true" strokeWidth={1.5} className="size-3.5" />
             {project.gallery.length} photos
           </span>

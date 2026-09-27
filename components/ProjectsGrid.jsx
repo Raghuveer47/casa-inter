@@ -22,7 +22,7 @@ export default function ProjectsGrid() {
               onClick={() => setFilter(f)}
               className={cn(
                 "min-h-11 border px-5 text-xs font-semibold uppercase tracking-[0.16em] transition-colors duration-300",
-                filter === f ? "border-gold bg-gold text-night" : "border-cream/20 text-cream/70 hover:border-gold hover:text-cream"
+                filter === f ? "border-gold bg-gold text-on-accent" : "border-cream/20 text-cream/70 hover:border-gold hover:text-cream"
               )}
             >
               {f}

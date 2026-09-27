@@ -63,9 +63,10 @@ export default function EnquiryProvider({ children }) {
         {children}
         <AnimatePresence>
           {open && (
-            <div className="fixed inset-0 z-[60]" key={pathname}>
+            // Centred, Bootstrap-style modal on every screen size — the page stays visible behind it.
+            <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6" key={pathname}>
               <motion.div
-                className="absolute inset-0 bg-night/60"
+                className="absolute inset-0 bg-night/45 backdrop-blur-[2px]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -77,28 +78,28 @@ export default function EnquiryProvider({ children }) {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="enquiry-title"
-                className="absolute inset-y-0 right-0 flex w-full max-w-2xl flex-col overflow-y-auto bg-paper will-change-transform"
-                initial={{ x: "100%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "100%" }}
-                transition={{ duration: 0.38, ease: EASE }}
+                className="relative max-h-[78svh] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-3xl border border-gold/25 bg-paper shadow-[0_30px_80px_rgba(0,0,0,0.6)] will-change-transform"
+                initial={{ opacity: 0, y: 24, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 16, scale: 0.97 }}
+                transition={{ duration: 0.32, ease: EASE }}
               >
-                <div className="flex items-center justify-between px-6 pt-6 sm:px-12 sm:pt-10">
-                  <p className="eyebrow text-gold">Book a consultation</p>
-                  <button
-                    type="button"
-                    onClick={closeEnquiry}
-                    className="-mr-2 grid size-11 place-items-center transition-transform duration-500 hover:rotate-90"
-                    aria-label="Close enquiry form"
-                  >
-                    <X strokeWidth={1.25} className="size-6" />
-                  </button>
-                </div>
-                <div className="px-6 pb-12 pt-6 sm:px-12">
-                  <h2 id="enquiry-title" className="font-serif text-headline font-light">
+                <button
+                  type="button"
+                  onClick={closeEnquiry}
+                  className="absolute right-4 top-4 z-10 grid size-10 place-items-center rounded-full border border-cream/15 bg-paper/80 transition-colors hover:border-gold hover:text-gold-soft"
+                  aria-label="Close enquiry form"
+                >
+                  <X strokeWidth={1.5} className="size-5" />
+                </button>
+                <div className="px-5 pb-7 pt-6 sm:px-10 sm:pb-10 sm:pt-9">
+                  <p className="inline-flex rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-gold-soft">
+                    Book a consultation
+                  </p>
+                  <h2 id="enquiry-title" className="mt-3 pr-10 font-serif text-3xl font-light leading-tight sm:mt-4 sm:text-5xl">
                     Tell us about <em className="text-earth">your space</em>
                   </h2>
-                  <div className="mt-10">
+                  <div className="mt-6 sm:mt-8">
                     <EnquiryForm source={`Modal — ${pathname}`} onDone={closeEnquiry} />
                   </div>
                 </div>

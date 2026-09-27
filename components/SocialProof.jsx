@@ -32,8 +32,8 @@ export default function SocialProof() {
         </Reveal>
         <ul className="mt-12 grid grid-cols-3 gap-2 md:grid-cols-6 md:gap-3">
           {tiles.map((src, i) => (
-            <li key={src} className="relative aspect-square overflow-hidden bg-sand">
-              <a href={instagram.href} target="_blank" rel="noopener noreferrer" className="group block size-full" aria-label={`CasaArt on Instagram — post ${i + 1} (opens in a new tab)`}>
+            <li key={src} className="relative aspect-square overflow-hidden rounded-2xl bg-sand">
+              <a href={instagram.href} target="_blank" rel="noopener noreferrer" className="group relative block size-full" aria-label={`CasaArt on Instagram — post ${i + 1} (opens in a new tab)`}>
                 <Image src={src} alt="" fill sizes="(min-width: 768px) 16vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 <span className="absolute inset-0 grid place-items-center bg-night/0 text-cream opacity-0 transition-all duration-500 group-hover:bg-night/40 group-hover:opacity-100">
                   <Instagram className="size-6" />
@@ -42,7 +42,7 @@ export default function SocialProof() {
             </li>
           ))}
         </ul>
-        <a href={instagram.href} target="_blank" rel="noopener noreferrer" className="eyebrow mt-10 inline-flex items-center gap-2 border-b border-cream/30 pb-1.5 hover:border-gold">
+        <a href={instagram.href} target="_blank" rel="noopener noreferrer" className="mt-10 inline-flex min-h-12 items-center gap-2 rounded-full border border-cream/25 px-6 text-sm font-semibold transition-colors hover:border-gold hover:text-gold">
           <Instagram className="size-4" /> Follow on Instagram
         </a>
       </div>

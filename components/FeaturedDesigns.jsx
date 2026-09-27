@@ -6,7 +6,7 @@ import { allPhotos } from "@/data/projects";
 // Homepage mosaic of featured modular designs; "+N more" opens the full /gallery page.
 export default function FeaturedDesigns() {
   return (
-    <section aria-labelledby="designs-title" className="section-y bg-ivory">
+    <section aria-labelledby="designs-title" className="theme-light section-y">
       <div className="container-x">
         <SectionHeading
           id="designs-title"

@@ -24,7 +24,6 @@ export default function ParallaxBand() {
         <Image src={images.livingArched} alt="" fill sizes="100vw" className="object-cover" />
       </motion.div>
       <div className="absolute inset-0 bg-night/65" />
-      <div className="absolute inset-4 border border-gold-soft/30 md:inset-8" aria-hidden="true" />
 
       <div className="container-x relative py-28 text-center md:py-44">
         <Reveal>

@@ -15,6 +15,15 @@
   --color-line: #2c2721;
   --color-charcoal: #1a1714;
   --color-cream: #f2ebdf;
+  /* Light cards that sit on dark sections (service cards, logo box). */
+  --color-card: #f7f3ec;
+  --color-card-ink: #1a1612;
+  --color-card-muted: #6b6258;
+  /* Text on accent-coloured fills (buttons, active chips). Flips in .theme-light. */
+  --color-on-accent: var(--color-night);
+  /* The dark-section accent, resolved once on <html> so it stays bright inside
+     .theme-light too — for dark cards placed on light sections. */
+  --color-accent-bright: var(--color-gold-soft);
 
   --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   --font-serif--font-feature-settings: "lnum" 1;
@@ -77,16 +86,12 @@
     text-transform: uppercase;
     font-weight: 600;
   }
-  /* Thin offset gold frame around an image — the classic "mat" look. */
+  /* Soft rounded image frame used for photos across the site. */
   .frame {
     position: relative;
-  }
-  .frame::after {
-    content: "";
-    position: absolute;
-    inset: 0.75rem;
-    border: 1px solid rgb(220 193 137 / 0.45);
-    pointer-events: none;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    isolation: isolate;
   }
   .skip-link {
     position: absolute;
@@ -130,24 +135,198 @@ html.has-custom-cursor select {
   cursor: pointer !important;
 }
 
-/* Light (ivory-white) sections inside the black site. Wrap any section in
-   .theme-light and every colour utility inside it flips to the light palette. */
+/* ---------------------------------------------------------------------------
+   Colour themes. Pick one with THEME in app/layout.js (<html data-theme>);
+   open any page with ?preview to compare them live. The @theme/:root values
+   above are the original black & gold fallback. Each theme sets the dark
+   palette plus the --lt-* palette for light sections.
+   --------------------------------------------------------------------------- */
+:root {
+  --lt-paper: #f7f3ec;
+  --lt-ivory: #efe8dc;
+  --lt-sand: #e4d9c6;
+  --lt-ink: #1a1612;
+  --lt-muted: #6b6258;
+  --lt-line: #d9ccb6;
+  --lt-accent: #a8823f;
+  --lt-accent-deep: #8d6a2f;
+  --lt-charcoal: #e9e1d3;
+}
+
+/* Mocha & linen — espresso-brown surfaces with a soft latte/taupe accent. Warm and homely. */
+html[data-theme="mocha"] {
+  --color-night: #100d0b;
+  --color-paper: #161210;
+  --color-ivory: #1e1916;
+  --color-sand: #29221e;
+  --color-charcoal: #1b1613;
+  --color-line: #342b26;
+  --color-cream: #f5efe9;
+  --color-muted: #bbafa5;
+  --color-gold: #c8a78a;
+  --color-gold-soft: #dcc3ab;
+  --color-clay: #b8957a;
+  --color-earth: #dcc3ab;
+  --color-beige: #eadbcb;
+  --color-card: #faf6f2;
+  --color-card-ink: #1d1714;
+  --color-card-muted: #685c54;
+  --lt-paper: #faf7f3;
+  --lt-ivory: #f1ebe4;
+  --lt-sand: #e5dcd2;
+  --lt-ink: #1d1714;
+  --lt-muted: #5d524a;
+  --lt-line: #e2d8cd;
+  --lt-accent: #86664e;
+  --lt-accent-deep: #6f533e;
+  --lt-charcoal: #ece5dd;
+}
+
+
+/* Ink & ivory — black and white with a warm-white accent. Minimal, gallery-style luxury. */
+html[data-theme="ink"] {
+  --color-night: #0a0a0a;
+  --color-paper: #111111;
+  --color-ivory: #181818;
+  --color-sand: #222222;
+  --color-charcoal: #161616;
+  --color-line: #2c2c2c;
+  --color-cream: #f5f5f3;
+  --color-muted: #b5b5b1;
+  --color-gold: #ebe6dc;
+  --color-gold-soft: #f4f1ea;
+  --color-clay: #dcd6ca;
+  --color-earth: #f4f1ea;
+  --color-beige: #faf8f4;
+  --color-card: #ffffff;
+  --color-card-ink: #111111;
+  --color-card-muted: #5f5f5d;
+  --lt-paper: #ffffff;
+  --lt-ivory: #f4f4f2;
+  --lt-sand: #e8e8e5;
+  --lt-ink: #111111;
+  --lt-muted: #555553;
+  --lt-line: #e3e3e0;
+  --lt-accent: #1a1a1a;
+  --lt-accent-deep: #000000;
+  --lt-charcoal: #ededeb;
+}
+
+/* Burgundy & rose — deep wine surfaces with a soft rose accent. Rich and elegant. */
+html[data-theme="burgundy"] {
+  --color-night: #150a0c;
+  --color-paper: #1c0e11;
+  --color-ivory: #251317;
+  --color-sand: #311a1f;
+  --color-charcoal: #200f13;
+  --color-line: #3f242a;
+  --color-cream: #f7eeee;
+  --color-muted: #c5b0b2;
+  --color-gold: #d9a9a2;
+  --color-gold-soft: #e9c5bf;
+  --color-clay: #cc968e;
+  --color-earth: #e9c5bf;
+  --color-beige: #f2dcd8;
+  --color-card: #fbf6f4;
+  --color-card-ink: #1f0f12;
+  --color-card-muted: #6b575a;
+  --lt-paper: #fbf7f5;
+  --lt-ivory: #f4ebe8;
+  --lt-sand: #e9dbd7;
+  --lt-ink: #1f0f12;
+  --lt-muted: #5e4b4e;
+  --lt-line: #e8dad6;
+  --lt-accent: #8c2f3c;
+  --lt-accent-deep: #74252f;
+  --lt-charcoal: #efe4e1;
+}
+
+/* Indigo & lavender — deep blue-violet surfaces with a soft periwinkle accent. Modern and fresh. */
+html[data-theme="indigo"] {
+  --color-night: #0b0c16;
+  --color-paper: #10121f;
+  --color-ivory: #171a2b;
+  --color-sand: #202439;
+  --color-charcoal: #141729;
+  --color-line: #2a2f48;
+  --color-cream: #eff0f8;
+  --color-muted: #afb2ca;
+  --color-gold: #a9b1ff;
+  --color-gold-soft: #c7ccff;
+  --color-clay: #939cf5;
+  --color-earth: #c7ccff;
+  --color-beige: #dde0ff;
+  --color-card: #f7f7fc;
+  --color-card-ink: #11132a;
+  --color-card-muted: #5a5d78;
+  --lt-paper: #f8f8fc;
+  --lt-ivory: #eeeff8;
+  --lt-sand: #e1e3f1;
+  --lt-ink: #11132a;
+  --lt-muted: #50536e;
+  --lt-line: #dfe1ee;
+  --lt-accent: #4a50c8;
+  --lt-accent-deep: #3b40a8;
+  --lt-charcoal: #e9eaf5;
+}
+
+/* Light sections inside the dark site. Wrap any section in .theme-light and
+   every colour utility inside it flips to the current theme's light palette. */
 .theme-light {
-  --color-paper: #f7f3ec;
-  --color-ivory: #efe8dc;
-  --color-sand: #e4d9c6;
-  --color-cream: #1a1612;
-  --color-muted: #6b6258;
-  --color-line: #d9ccb6;
-  --color-gold: #a8823f;
-  --color-gold-soft: #8d6a2f;
-  --color-earth: #8d6a2f;
-  --color-beige: #8d6a2f;
-  --color-clay: #8d6a2f;
-  --color-charcoal: #e9e1d3;
+  --color-paper: var(--lt-paper);
+  --color-ivory: var(--lt-ivory);
+  --color-sand: var(--lt-sand);
+  --color-cream: var(--lt-ink);
+  --color-muted: var(--lt-muted);
+  --color-line: var(--lt-line);
+  --color-gold: var(--lt-accent);
+  --color-gold-soft: var(--lt-accent-deep);
+  --color-earth: var(--lt-accent-deep);
+  --color-beige: var(--lt-accent-deep);
+  --color-clay: var(--lt-accent-deep);
+  --color-charcoal: var(--lt-charcoal);
+  --color-on-accent: var(--lt-paper);
   background-color: var(--color-paper);
   color: var(--color-cream);
 }
-.theme-light .frame::after {
-  border-color: rgb(247 243 236 / 0.6);
+
+/* ---------------------------------------------------------------------------
+   Heading styles. Pick one with FONT in app/layout.js (<html data-font>).
+   Every heading uses .font-serif, so these rules restyle them all at once.
+   (Unlayered on purpose: they win over the font-light utility on headings.)
+   --------------------------------------------------------------------------- */
+html[data-font="modern"] {
+  --font-serif: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+  --display-weight: 700;
+  --display-tracking: -0.03em;
+  --display-em: normal;
+  --text-display: clamp(2.5rem, 6vw, 5.75rem);
+  --text-display--line-height: 1.02;
+  --text-headline: clamp(2rem, 4vw, 3.75rem);
+  --text-headline--line-height: 1.08;
+  --text-title: clamp(1.4rem, 2vw, 2rem);
+}
+html[data-font="classic"] {
+  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --display-weight: 600;
+  --display-tracking: -0.015em;
+  --display-em: italic;
+  --text-display: clamp(2.6rem, 6.4vw, 6.25rem);
+  --text-display--line-height: 1.02;
+  --text-headline: clamp(2.1rem, 4.2vw, 4rem);
+  --text-headline--line-height: 1.08;
+}
+html[data-font="elegant"] {
+  --display-weight: 500;
+  --display-tracking: -0.005em;
+  --display-em: italic;
+}
+
+html[data-font] .font-serif {
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+}
+html[data-font] .font-serif em,
+html[data-font] em.font-serif {
+  font-style: var(--display-em);
 }

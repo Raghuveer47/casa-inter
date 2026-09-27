@@ -89,7 +89,7 @@ function SwipeGallery() {
 
 export default function Projects() {
   return (
-    <section aria-label="Featured projects" className="bg-ivory py-[clamp(5rem,11vw,10rem)] lg:py-0">
+    <section aria-label="Featured projects" className="theme-light bg-ivory py-[clamp(5rem,11vw,10rem)] lg:py-0">
       <SwipeGallery />
       <PinnedGallery />
     </section>

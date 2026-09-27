@@ -13,7 +13,7 @@ import { cn, EASE } from "@/lib/utils";
 // on the scrolled black bar and in the mobile menu alike.
 function Wordmark({ compact }) {
   return (
-    <span className="inline-flex items-center justify-center rounded-lg bg-[#f7f3ec] px-3 py-1.5 shadow-[0_10px_28px_rgba(0,0,0,0.35)] transition-[padding] duration-500">
+    <span className="inline-flex items-center justify-center rounded-lg bg-card px-3 py-1.5 shadow-[0_10px_28px_rgba(0,0,0,0.35)] transition-[padding] duration-500">
       <Image
         src="/logo.png"
         alt="CasaArt Interiors"
@@ -106,8 +106,8 @@ export default function Navbar() {
               type="button"
               onClick={openEnquiry}
               className={cn(
-                "hidden min-h-11 items-center px-6 text-[0.72rem] font-semibold uppercase tracking-[0.16em] transition-colors duration-500 sm:inline-flex",
-                light ? "border border-gold-soft text-cream hover:bg-gold hover:border-gold hover:text-night" : "bg-gold text-night hover:bg-clay"
+                "hidden min-h-11 items-center rounded-full px-6 text-[0.72rem] font-semibold uppercase tracking-[0.14em] transition-colors duration-500 sm:inline-flex",
+                light ? "border border-gold-soft text-cream hover:bg-gold hover:border-gold hover:text-on-accent" : "bg-gold text-on-accent hover:bg-clay"
               )}
             >
               Book a Consultation
@@ -179,7 +179,7 @@ export default function Navbar() {
                   setMenuOpen(false);
                   openEnquiry();
                 }}
-                className="inline-flex min-h-12 items-center justify-center bg-gold px-7 text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-night"
+                className="inline-flex min-h-12 items-center justify-center rounded-full bg-gold px-7 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-on-accent"
               >
                 Book a Consultation
               </button>

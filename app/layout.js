@@ -1,19 +1,38 @@
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Cormorant_Garamond, Manrope, Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EnquiryProvider from "@/components/EnquiryProvider";
 import FloatingContact from "@/components/FloatingContact";
 import QuotePopup from "@/components/QuotePopup";
 import CustomCursor from "@/components/CustomCursor";
+import ThemePreview from "@/components/ThemePreview";
 import { site } from "@/lib/site";
 import "./globals.css";
 
+// Heading fonts — one per FONT option below. Only the active one is preloaded.
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-jakarta",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
+  display: "swap",
+  preload: false,
+});
+
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["500", "600"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
+  preload: false,
 });
 
 const sans = Manrope({
@@ -21,6 +40,15 @@ const sans = Manrope({
   variable: "--font-manrope",
   display: "swap",
 });
+
+// Colour theme for the whole site — see the [data-theme] blocks in app/globals.css.
+// Options: "mocha" (client's current pick), "ink", "burgundy", "indigo".
+// Open any page with ?preview to compare them live.
+const THEME = "mocha";
+
+// Heading style — see the [data-font] blocks in app/globals.css.
+// Options: "modern" (bold sans), "classic" (bold serif), "elegant" (fine serif).
+const FONT = "modern";
 
 const title = "CasaArt Interiors | Premium Modular Interiors in Hyderabad";
 
@@ -43,7 +71,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#0c0b0a",
+  themeColor: { mocha: "#161210", ink: "#111111", burgundy: "#1c0e11", indigo: "#10121f" }[THEME],
 };
 
 const jsonLd = {
@@ -68,8 +96,8 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
-      <body className="pb-16 font-sans antialiased md:pb-0">
+    <html lang="en" data-theme={THEME} data-font={FONT} className={`${jakarta.variable} ${playfair.variable} ${serif.variable} ${sans.variable}`}>
+      <body className="font-sans antialiased">
         <a href="#main" className="skip-link">Skip to content</a>
         <EnquiryProvider>
           <Navbar />
@@ -79,6 +107,7 @@ export default function RootLayout({ children }) {
           <QuotePopup />
         </EnquiryProvider>
         <CustomCursor />
+        <ThemePreview />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>

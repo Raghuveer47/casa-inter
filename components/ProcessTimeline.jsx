@@ -31,8 +31,8 @@ export default function ProcessTimeline({ dark = false, heading = true }) {
                   <Icon aria-hidden="true" strokeWidth={1.2} className="size-6" />
                 </span>
                 <div className="lg:mt-6 lg:pr-2">
-                  <span className={cn("font-serif text-lg italic", dark ? "text-gold-soft" : "text-gold")}>{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-1 font-serif text-xl font-light leading-tight md:text-2xl">{step.title}</h3>
+                  <span className={cn("text-sm font-bold", dark ? "text-gold-soft" : "text-gold")}>{String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-1 text-base font-semibold leading-snug md:text-lg">{step.title}</h3>
                   <p className={cn("mt-2 text-sm leading-relaxed", dark ? "text-cream/60" : "text-muted")}>{step.description}</p>
                 </div>
               </Reveal>

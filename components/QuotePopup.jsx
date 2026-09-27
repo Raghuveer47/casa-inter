@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import EnquiryForm from "./EnquiryForm";
-import { Ornament } from "./ui/SectionHeading";
 import { images } from "@/data/images";
 import { EASE } from "@/lib/utils";
 
@@ -60,9 +59,9 @@ export default function QuotePopup() {
   return (
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-[65] flex items-end justify-center md:items-center md:p-6">
+        <div className="fixed inset-0 z-[65] flex items-center justify-center p-4 md:p-6">
           <motion.div
-            className="absolute inset-0 bg-night/75 backdrop-blur-[2px]"
+            className="absolute inset-0 bg-night/45 backdrop-blur-[2px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -73,11 +72,11 @@ export default function QuotePopup() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="quote-popup-title"
-            className="relative grid max-h-[92svh] w-full max-w-4xl overflow-y-auto border-t border-gold/40 bg-paper md:grid-cols-[0.9fr_1.1fr] md:border"
-            initial={{ y: "100%", opacity: 0.6 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: "100%", opacity: 0 }}
-            transition={{ duration: 0.45, ease: EASE }}
+            className="relative grid max-h-[78svh] w-full max-w-md overflow-y-auto overscroll-contain rounded-3xl border border-gold/25 bg-paper shadow-[0_30px_80px_rgba(0,0,0,0.6)] md:max-w-4xl md:grid-cols-[0.9fr_1.1fr]"
+            initial={{ opacity: 0, y: 24, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.97 }}
+            transition={{ duration: 0.35, ease: EASE }}
           >
             <div className="relative hidden md:block">
               <Image src={images.livingLuxury} alt="" fill sizes="40vw" className="object-cover" />
@@ -91,24 +90,22 @@ export default function QuotePopup() {
               </ul>
             </div>
 
-            <div className="p-6 pb-8 sm:p-9">
-              <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-cream/20 md:hidden" aria-hidden="true" />
+            <div className="p-5 pb-7 sm:p-9">
               <button
                 type="button"
                 data-close
                 onClick={() => setOpen(false)}
                 aria-label="Close quote form"
-                className="absolute right-3 top-3 grid size-11 place-items-center text-cream/70 transition-colors hover:text-gold-soft"
+                className="absolute right-4 top-4 z-10 grid size-10 place-items-center rounded-full border border-cream/15 bg-paper/80 text-cream/80 transition-colors hover:border-gold hover:text-gold-soft"
               >
-                <X strokeWidth={1.25} className="size-6" />
+                <X strokeWidth={1.5} className="size-5" />
               </button>
-              <p className="eyebrow text-gold">Free design consultation</p>
-              <h2 id="quote-popup-title" className="mt-3 font-serif text-4xl font-light leading-tight">
+              <p className="inline-flex rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-gold-soft">Free design consultation</p>
+              <h2 id="quote-popup-title" className="mt-3 pr-10 font-serif text-3xl font-light leading-tight sm:mt-4 sm:text-4xl">
                 Get a <em className="text-gold-soft">Free Quote</em>
               </h2>
-              <Ornament className="mt-4" />
-              <p className="mt-4 text-sm leading-relaxed text-muted">A personalised 3D concept and factory-direct estimate for your home — no obligation.</p>
-              <div className="mt-6">
+              <p className="mt-3 hidden text-sm leading-relaxed text-muted sm:block">A personalised 3D concept and factory-direct estimate for your home — no obligation.</p>
+              <div className="mt-4 sm:mt-5">
                 <EnquiryForm
                   compact
                   source={`Pop-up — ${pathname}`}

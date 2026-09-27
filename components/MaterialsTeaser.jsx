@@ -7,7 +7,7 @@ import { materials } from "@/data/brand";
 export default function MaterialsTeaser() {
   const shown = materials.slice(0, 6);
   return (
-    <section aria-labelledby="materials-title" className="section-y">
+    <section aria-labelledby="materials-title" className="theme-light section-y bg-ivory">
       <div className="container-x">
         <SectionHeading
           id="materials-title"

@@ -62,14 +62,15 @@ export default function EnquiryForm({ source = "Website", dark = false, compact 
   }
 
   const tone = dark
-    ? { text: "text-cream", muted: "text-cream/60", line: "border-cream/25 focus:border-gold", option: "bg-ivory text-cream" }
-    : { text: "text-cream", muted: "text-muted", line: "border-cream/20 focus:border-gold", option: "bg-ivory text-cream" };
+    ? { text: "text-cream", muted: "text-cream/60", line: "border-cream/15 focus:border-gold", option: "bg-ivory text-cream" }
+    : { text: "text-cream", muted: "text-muted", line: "border-cream/12 focus:border-gold", option: "bg-ivory text-cream" };
 
   const fieldClass = cn(
-    "w-full appearance-none rounded-none border-0 border-b bg-transparent px-0 py-3 text-base outline-none transition-colors duration-300 placeholder:text-current placeholder:opacity-35 focus-visible:outline-none",
+    "mt-2 w-full appearance-none rounded-xl border bg-cream/[0.04] px-4 py-3 text-base outline-none transition-colors duration-300 placeholder:text-current placeholder:opacity-35 focus:bg-cream/[0.07] focus-visible:outline-none",
     tone.line
   );
-  const labelClass = cn("eyebrow block", tone.muted);
+  const labelClass = cn("block text-sm font-medium", tone.muted);
+  const wide = compact ? "col-span-2 sm:col-span-1" : undefined;
 
   function Field({ name, label, required, children, className }) {
     return (
@@ -138,24 +139,27 @@ export default function EnquiryForm({ source = "Website", dark = false, compact 
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className={cn("relative grid gap-x-8 sm:grid-cols-2", compact ? "gap-y-5" : "gap-y-8")}
+            className={cn("relative grid gap-x-5 sm:grid-cols-2", compact ? "grid-cols-2 gap-x-3 gap-y-4 sm:gap-x-5" : "grid-cols-1 gap-y-6")}
           >
             {visible("name") && Field({
               name: "name",
               label: "Name",
               required: true,
+              className: wide,
               children: <input type="text" autoComplete="name" className={fieldClass} placeholder="Your full name" {...a11y("name", true)} />,
             })}
             {visible("phone") && Field({
               name: "phone",
               label: "Phone Number",
               required: true,
+              className: wide,
               children: <input type="tel" inputMode="tel" autoComplete="tel" className={fieldClass} placeholder="+91" {...a11y("phone", true)} />,
             })}
             {visible("location") && Field({
               name: "location",
               label: "Location",
               required: true,
+              className: wide,
               children: <input type="text" autoComplete="address-level2" className={fieldClass} placeholder="e.g. Kokapet, Hyderabad" {...a11y("location", true)} />,
             })}
             {visible("email") && Field({
@@ -168,13 +172,13 @@ export default function EnquiryForm({ source = "Website", dark = false, compact 
               label: "Property Type",
               children: (
                 <div className="relative">
-                  <select className={cn(fieldClass, "pr-8", !values.propertyType && "opacity-60")} {...a11y("propertyType")}>
-                    <option value="" className={tone.option}>Select property type</option>
+                  <select className={cn(fieldClass, "pr-10", !values.propertyType && "opacity-60")} {...a11y("propertyType")}>
+                    <option value="" className={tone.option}>{compact ? "Select" : "Select property type"}</option>
                     {PROPERTY_OPTIONS.map((o) => (
                       <option key={o} value={o} className={tone.option}>{o}</option>
                     ))}
                   </select>
-                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-0 top-1/2 size-4 -translate-y-1/2 opacity-60" />
+                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-4 top-1/2 mt-1 size-4 -translate-y-1/2 opacity-60" />
                 </div>
               ),
             })}
@@ -184,13 +188,13 @@ export default function EnquiryForm({ source = "Website", dark = false, compact 
               required: true,
               children: (
                 <div className="relative">
-                  <select className={cn(fieldClass, "pr-8", !values.requirement && "opacity-60")} {...a11y("requirement", true)}>
+                  <select className={cn(fieldClass, "pr-10", !values.requirement && "opacity-60")} {...a11y("requirement", true)}>
                     <option value="" disabled className={tone.option}>Select requirement</option>
                     {REQUIREMENT_OPTIONS.map((o) => (
                       <option key={o} value={o} className={tone.option}>{o}</option>
                     ))}
                   </select>
-                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-0 top-1/2 size-4 -translate-y-1/2 opacity-60" />
+                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-4 top-1/2 mt-1 size-4 -translate-y-1/2 opacity-60" />
                 </div>
               ),
             })}
@@ -204,29 +208,29 @@ export default function EnquiryForm({ source = "Website", dark = false, compact 
               label: "Budget Range (optional)",
               children: (
                 <div className="relative">
-                  <select className={cn(fieldClass, "pr-8", !values.budget && "opacity-60")} {...a11y("budget")}>
+                  <select className={cn(fieldClass, "pr-10", !values.budget && "opacity-60")} {...a11y("budget")}>
                     <option value="" className={tone.option}>Select a range</option>
                     {BUDGET_OPTIONS.map((o) => (
                       <option key={o} value={o} className={tone.option}>{o}</option>
                     ))}
                   </select>
-                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-0 top-1/2 size-4 -translate-y-1/2 opacity-60" />
+                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-4 top-1/2 mt-1 size-4 -translate-y-1/2 opacity-60" />
                 </div>
               ),
             })}
             {visible("startTime") && Field({
               name: "startTime",
-              label: "When do you plan to start?",
-              className: compact ? "sm:col-span-2" : undefined,
+              label: compact ? "Start time" : "When do you plan to start?",
+              className: compact ? "min-w-0 sm:col-span-2" : undefined,
               children: (
                 <div className="relative">
-                  <select className={cn(fieldClass, "pr-8", !values.startTime && "opacity-60")} {...a11y("startTime")}>
-                    <option value="" className={tone.option}>Select timeline</option>
+                  <select className={cn(fieldClass, "pr-10", !values.startTime && "opacity-60")} {...a11y("startTime")}>
+                    <option value="" className={tone.option}>{compact ? "Select" : "Select timeline"}</option>
                     {START_OPTIONS.map((o) => (
                       <option key={o} value={o} className={tone.option}>{o}</option>
                     ))}
                   </select>
-                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-0 top-1/2 size-4 -translate-y-1/2 opacity-60" />
+                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-4 top-1/2 mt-1 size-4 -translate-y-1/2 opacity-60" />
                 </div>
               ),
             })}
@@ -235,13 +239,13 @@ export default function EnquiryForm({ source = "Website", dark = false, compact 
               label: "Preferred Consultation Time",
               children: (
                 <div className="relative">
-                  <select className={cn(fieldClass, "pr-8", !values.preferredTime && "opacity-60")} {...a11y("preferredTime")}>
+                  <select className={cn(fieldClass, "pr-10", !values.preferredTime && "opacity-60")} {...a11y("preferredTime")}>
                     <option value="" className={tone.option}>Any time</option>
                     {TIME_OPTIONS.map((o) => (
                       <option key={o} value={o} className={tone.option}>{o}</option>
                     ))}
                   </select>
-                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-0 top-1/2 size-4 -translate-y-1/2 opacity-60" />
+                  <ChevronDown aria-hidden="true" strokeWidth={1.5} className="pointer-events-none absolute right-4 top-1/2 mt-1 size-4 -translate-y-1/2 opacity-60" />
                 </div>
               ),
             })}
@@ -260,14 +264,14 @@ export default function EnquiryForm({ source = "Website", dark = false, compact 
               <input type="text" id={id("website")} name="website" tabIndex={-1} autoComplete="off" value={values.website} onChange={update} />
             </div>
 
-            <div className="flex flex-col gap-6 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
+            <div className={cn("col-span-full flex flex-col gap-4", !compact && "sm:flex-row sm:items-center sm:justify-between sm:gap-6")}>
               <button
                 type="submit"
                 disabled={status === "submitting"}
                 aria-disabled={status === "submitting"}
                 className={cn(
-                  "group inline-flex min-h-14 items-center justify-center gap-3 px-9 text-[0.8rem] font-medium uppercase tracking-[0.16em] transition-colors duration-500 disabled:cursor-wait disabled:opacity-70",
-                  "bg-gold text-night hover:bg-clay"
+                  "group inline-flex min-h-13 shrink-0 items-center justify-center gap-3 whitespace-nowrap rounded-full px-8 text-[0.8rem] font-semibold uppercase tracking-[0.14em] transition-colors duration-500 disabled:cursor-wait disabled:opacity-70",
+                  "bg-gold text-on-accent hover:bg-clay"
                 )}
               >
                 {status === "submitting" ? (
@@ -292,7 +296,7 @@ export default function EnquiryForm({ source = "Website", dark = false, compact 
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className={cn("border-l-2 border-[#b4533f] pl-4 sm:col-span-2")}
+                  className="col-span-full rounded-xl border border-[#b4533f]/50 bg-[#b4533f]/10 p-4"
                 >
                   <p className="font-medium">Something went wrong.</p>
                   <p className={cn("mt-1 text-sm", tone.muted)}>

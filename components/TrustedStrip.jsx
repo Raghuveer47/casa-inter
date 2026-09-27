@@ -1,19 +1,26 @@
-import { communities } from "@/data/brand";
+import { trustedBy } from "@/data/brand";
 
-// Slow, looping marquee of communities CasaArt has worked in. Pauses on hover
-// and stops moving for visitors who prefer reduced motion.
+// "Trusted By" logo marquee on black, as on the client's reference design.
+// The logos are drawn for dark backgrounds, so they show in their own colours.
+// Pauses on hover and stops moving for visitors who prefer reduced motion.
 export default function TrustedStrip() {
-  const row = [...communities, ...communities];
+  const row = [...trustedBy, ...trustedBy];
   return (
-    <section aria-label="Communities we have worked in" className="border-y border-line bg-night py-6">
-      <div className="container-x flex items-center gap-6">
-        <p className="eyebrow shrink-0 text-gold">Trusted in</p>
-        <div className="relative flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
-          <ul className="flex w-max animate-[marquee_38s_linear_infinite] gap-10 hover:[animation-play-state:paused] motion-reduce:animate-none">
-            {row.map((c, i) => (
-              <li key={`${c}-${i}`} aria-hidden={i >= communities.length} className="flex items-center gap-10 whitespace-nowrap font-serif text-xl text-cream/80 md:text-2xl">
-                {c}
-                <span aria-hidden="true" className="size-1.5 rotate-45 bg-gold/70" />
+    <section aria-labelledby="trusted-title" className="bg-[#060606] py-12 md:pb-16 md:pt-14">
+      <div className="container-x">
+        <h2 id="trusted-title" className="text-center font-serif text-2xl text-white md:text-3xl">
+          Trusted By
+        </h2>
+        <div className="relative mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)] md:mt-10">
+          <ul className="flex w-max animate-[marquee_34s_linear_infinite] items-center hover:[animation-play-state:paused] motion-reduce:animate-none">
+            {row.map((b, i) => (
+              <li key={`${b.name}-${i}`} aria-hidden={i >= trustedBy.length} className="flex h-14 shrink-0 items-center pr-14 md:h-16 md:pr-20">
+                {b.logo ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={b.logo} alt={b.name} loading="lazy" className="h-10 w-auto max-w-44 object-contain opacity-95 md:h-[42px]" />
+                ) : (
+                  <span className="whitespace-nowrap text-xl font-semibold tracking-tight text-white md:text-2xl">{b.name}</span>
+                )}
               </li>
             ))}
           </ul>

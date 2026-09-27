@@ -64,7 +64,7 @@ function CompareSlider({ item }) {
   return (
     <div
       ref={containerRef}
-      className="relative aspect-[4/5] cursor-ew-resize touch-pan-y select-none overflow-hidden bg-charcoal sm:aspect-[4/3] md:aspect-[16/9]"
+      className="relative aspect-[4/5] cursor-ew-resize touch-pan-y select-none overflow-hidden rounded-3xl bg-charcoal sm:aspect-[4/3] md:aspect-[16/9]"
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={endDrag}
@@ -89,8 +89,8 @@ function CompareSlider({ item }) {
         />
       </motion.div>
 
-      <span className="eyebrow pointer-events-none absolute left-4 top-4 bg-black/70 px-3 py-2 text-[#f2ebdf] backdrop-blur-sm md:left-6 md:top-6">Before · Bare Shell</span>
-      <span className="eyebrow pointer-events-none absolute bottom-4 right-4 bg-black/70 px-3 py-2 text-[#dcc189] backdrop-blur-sm md:bottom-6 md:right-6">After · CasaArt</span>
+      <span className="pointer-events-none absolute left-4 top-4 rounded-full bg-black/70 px-4 py-2 text-xs font-semibold text-[#f2ebdf] backdrop-blur-sm md:left-6 md:top-6">Before · Bare Shell</span>
+      <span className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-gold px-4 py-2 text-xs font-semibold text-on-accent backdrop-blur-sm md:bottom-6 md:right-6">After · CasaArt</span>
 
       <motion.div className="pointer-events-none absolute inset-y-0 -ml-px w-0.5 bg-[#f2ebdf]" style={{ left }} aria-hidden="true" />
       <motion.div
@@ -119,7 +119,7 @@ export default function BeforeAfter() {
   const item = designToReality[active];
 
   return (
-    <section aria-labelledby="transform-title" className="theme-light section-y bg-ivory">
+    <section aria-labelledby="transform-title" className="theme-light section-y">
       <div className="container-x">
         <SectionHeading
           id="transform-title"
@@ -129,8 +129,8 @@ export default function BeforeAfter() {
         />
         <ul className="mx-auto mt-12 grid max-w-5xl gap-6 text-center sm:grid-cols-3">
           {differentiators.map((d, i) => (
-            <Reveal as="li" key={d.title} delay={i * 0.08} className="border-t border-gold/40 pt-5">
-              <h3 className="font-serif text-2xl font-light">{d.title}</h3>
+            <Reveal as="li" key={d.title} delay={i * 0.08} className="rounded-3xl bg-ivory p-6">
+              <h3 className="text-lg font-semibold">{d.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{d.body}</p>
             </Reveal>
           ))}
@@ -145,8 +145,8 @@ export default function BeforeAfter() {
                 aria-selected={active === i}
                 onClick={() => setActive(i)}
                 className={cn(
-                  "min-h-11 border px-5 text-xs font-semibold uppercase tracking-[0.16em] transition-colors duration-500",
-                  active === i ? "border-gold bg-gold text-night" : "border-cream/20 text-cream/70 hover:border-gold hover:text-cream"
+                  "min-h-11 rounded-full border px-5 text-xs font-semibold uppercase tracking-[0.14em] transition-colors duration-500",
+                  active === i ? "border-gold bg-gold text-on-accent" : "border-cream/20 text-cream/70 hover:border-gold hover:text-cream"
                 )}
               >
                 {b.room}

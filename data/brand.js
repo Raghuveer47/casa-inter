@@ -20,6 +20,17 @@ export const differentiators = [
   { title: "One Accountable Team", body: "Design, manufacturing and installation under one roof — one point of contact from 3D to keys." },
 ];
 
+// Builders and communities shown in the homepage "Trusted By" logo marquee.
+// Entries without a logo render as a text wordmark.
+export const trustedBy = [
+  { name: "INDIS", logo: "/trusted/indis-logo-light.svg" },
+  { name: "LODHA", logo: "/trusted/asbl-lodha-logo.png" },
+  { name: "Aparna Constructions", logo: "/trusted/aparna-logo.svg" },
+  { name: "Janapriya UPSCALE", logo: "/trusted/janapriya-logo.png" },
+  { name: "My Home Bhooja", logo: "/trusted/bhooja_logo.png" },
+  { name: "Prestige High Fields" },
+];
+
 export const communities = ["Prestige High Fields", "My Home Mangala", "My Home Tridasa", "Raja Pushpa Provincia", "Indis One City", "Indis Viva City", "Aparna Zenon"];
 
 // Brands CasaArt lists as materials it works with. These are materials used — not claimed partnerships.

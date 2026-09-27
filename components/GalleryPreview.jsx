@@ -14,8 +14,8 @@ export default function GalleryPreview({ photos, href, alt, visible = 5, classNa
       {tiles.map((src, i) => {
         const isLast = i === tiles.length - 1 && hidden > 0;
         return (
-          <li key={src} className={cn("relative overflow-hidden bg-sand", i === 0 && "col-span-2", layout[i])}>
-            <Link href={href} className="group block size-full" aria-label={isLast ? `View all ${photos.length} photos` : `Open gallery — ${alt} photo ${i + 1}`}>
+          <li key={src} className={cn("relative overflow-hidden rounded-2xl bg-sand md:rounded-3xl", i === 0 && "col-span-2", layout[i])}>
+            <Link href={href} className="group relative block size-full" aria-label={isLast ? `View all ${photos.length} photos` : `Open gallery — ${alt} photo ${i + 1}`}>
               <Image src={src} alt={`${alt} — photo ${i + 1}`} fill sizes={i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"} className="object-cover transition-transform duration-[1200ms] ease-luxe group-hover:scale-[1.05]" />
               {isLast && (
                 <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-night/60 text-cream transition-colors duration-500 group-hover:bg-night/70">

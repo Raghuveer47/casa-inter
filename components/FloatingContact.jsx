@@ -1,7 +1,5 @@
 "use client";
 
-import { FileText, Phone } from "lucide-react";
-import { useEnquiry } from "./EnquiryProvider";
 import { site } from "@/lib/site";
 
 function WhatsAppIcon(props) {
@@ -12,42 +10,18 @@ function WhatsAppIcon(props) {
   );
 }
 
-// Phones: a fixed bottom bar with Call · WhatsApp · Get Quote, always in thumb reach.
-// Larger screens: a floating WhatsApp button in the corner.
+// A single floating WhatsApp button — a round icon on phones, a labelled pill from tablet up.
 export default function FloatingContact() {
-  const { openEnquiry } = useEnquiry();
-  const item = "flex flex-1 flex-col items-center justify-center gap-1 py-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.14em]";
-
   return (
-    <>
-      <nav
-        aria-label="Quick contact"
-        className="fixed inset-x-0 bottom-0 z-40 flex border-t border-gold/30 bg-night/95 pb-[env(safe-area-inset-bottom)] text-cream backdrop-blur-md md:hidden"
-      >
-        <a href={site.contact.phoneHref} className={item} aria-label={`Call CasaArt on ${site.contact.phone}`}>
-          <Phone strokeWidth={1.5} className="size-5 text-gold-soft" />
-          Call
-        </a>
-        <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" className={`${item} border-x border-cream/10`} aria-label="Chat on WhatsApp (opens in a new tab)">
-          <WhatsAppIcon className="size-5 text-[#3ccf74]" />
-          WhatsApp
-        </a>
-        <button type="button" onClick={openEnquiry} className={`${item} bg-gold text-night`}>
-          <FileText strokeWidth={1.5} className="size-5" />
-          Get Quote
-        </button>
-      </nav>
-
-      <a
-        href={site.whatsapp.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-40 hidden items-center gap-2 rounded-full bg-[#1f8f4e] px-5 py-3.5 text-white shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition-colors hover:bg-[#187a42] md:flex"
-        aria-label="Chat with CasaArt on WhatsApp (opens in a new tab)"
-      >
-        <WhatsAppIcon className="size-6" />
-        <span className="text-sm font-semibold">WhatsApp</span>
-      </a>
-    </>
+    <a
+      href={site.whatsapp.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-full bg-[#1f8f4e] p-3.5 text-white shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition-colors hover:bg-[#187a42] md:bottom-6 md:right-6 md:px-5"
+      aria-label="Chat with CasaArt on WhatsApp (opens in a new tab)"
+    >
+      <WhatsAppIcon className="size-6" />
+      <span className="hidden text-sm font-semibold md:inline">WhatsApp</span>
+    </a>
   );
 }

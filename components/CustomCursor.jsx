@@ -80,18 +80,20 @@ export default function CustomCursor() {
   return (
     <div aria-hidden="true" className={cn("pointer-events-none fixed inset-0 z-[100] transition-opacity duration-300", visible ? "opacity-100" : "opacity-0")}>
       <motion.div
-        className="absolute left-0 top-0 grid place-items-center rounded-full border border-gold-soft/80"
+        className={cn(
+          "absolute left-0 top-0 grid place-items-center rounded-full border border-gold-soft/80 transition-colors duration-300",
+          label ? "bg-gold/90" : variant === "link" ? "bg-gold/12" : "bg-transparent"
+        )}
         style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
         animate={{
           width: ringSize,
           height: ringSize,
           scale: pressed ? 0.85 : 1,
-          backgroundColor: label ? "rgba(197,161,97,0.92)" : variant === "link" ? "rgba(197,161,97,0.12)" : "rgba(197,161,97,0)",
           opacity: variant === "text" ? 0.4 : 1,
         }}
         transition={{ type: "spring", stiffness: 300, damping: 26 }}
       >
-        {label && <span className="eyebrow text-[0.6rem] text-night">{label}</span>}
+        {label && <span className="eyebrow text-[0.6rem] text-on-accent">{label}</span>}
       </motion.div>
       <motion.div
         className="absolute left-0 top-0 size-1.5 rounded-full bg-gold-soft"
